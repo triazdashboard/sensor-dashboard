@@ -561,17 +561,26 @@
           textStyle: { color: '#fff' }
         },
         legend: {
-          top: 6,
+          bottom: 4,
+          itemGap: 16,
+          itemWidth: 12,
+          itemHeight: 12,
           textStyle: {
             color: COLORS.muted,
-            fontSize: 13
-          }
+            fontSize: 11
+          },
+          formatter: name => ({
+            'Consumo Gruppi Frigo':    'Gruppi Frigo',
+            'Consumo Mensa':           'Mensa',
+            'Ricarica Auto Elettriche':'Ricarica Auto',
+            'Consumo Edificio':        'Edificio'
+          }[name] || name)
         },
         grid: {
           left: 55,
           right: 18,
-          top: 50,
-          bottom: 38
+          top: 16,
+          bottom: 52
         },
         xAxis: {
           type: 'category',
