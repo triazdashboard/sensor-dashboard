@@ -1,0 +1,77 @@
+{
+  "updated_at": "2026-04-08 16:00",
+  "totale_vs_fv": {
+    "consumo": 8931,
+    "fotovoltaico": 2578
+  },
+  "consumo_totale": [
+    {
+      "label": "Gio",
+      "value": 1872
+    },
+    {
+      "label": "Ven",
+      "value": 1377
+    },
+    {
+      "label": "Sab",
+      "value": 900
+    },
+    {
+      "label": "Dom",
+      "value": 906
+    },
+    {
+      "label": "Lun",
+      "value": 1221
+    },
+    {
+      "label": "Mar",
+      "value": 1593
+    },
+    {
+      "label": "Mer",
+      "value": 1062
+    }
+  ],
+  "consumo_parziale": {
+    "labels": [
+      "Gio",
+      "Ven",
+      "Sab",
+      "Dom",
+      "Lun",
+      "Mar",
+      "Mer"
+    ],
+    "series": {
+      "Gruppo Frigo": [
+        649,
+        547,
+        204,
+        204,
+        496,
+        394,
+        282
+      ],
+      "Mensa": [
+        200,
+        50,
+        38,
+        40,
+        50,
+        214,
+        185
+      ],
+      "Colonnina Auto": [
+        45,
+        0,
+        0,
+        0,
+        0,
+        35,
+        24
+      ]
+    }
+  }
+}
