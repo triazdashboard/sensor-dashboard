@@ -225,13 +225,6 @@ c-13.232,0-24-10.768-24-24s10.768-24,24-24h24V64z"/>
       if (kpisDiv) {
         kpisDiv.innerHTML =
           '<div class="ratio-kpi">' +
-            '<svg class="ratio-kpi-icon" viewBox="0 0 260 244"><use href="#icon-solar"/></svg>' +
-            '<div class="ratio-kpi-info">' +
-              '<span class="ratio-kpi-value" style="color:#f6c344">' + fmtEnergy(fv) + '</span>' +
-              '<span class="ratio-kpi-label">Fotovoltaico</span>' +
-            '</div>' +
-          '</div>' +
-          '<div class="ratio-kpi">' +
             '<svg class="ratio-kpi-icon" viewBox="0 0 496 496"><use href="#icon-ev"/></svg>' +
             '<div class="ratio-kpi-info">' +
               '<span class="ratio-kpi-value" style="color:#45d4ff">' + fmtEnergy(ev) + '</span>' +
@@ -271,7 +264,7 @@ c-13.232,0-24-10.768-24-24s10.768-24,24-24h24V64z"/>
             name: 'Fotovoltaico', type: 'gauge',
             center: ['50%', '50%'], radius: '56%',
             startAngle: 220, endAngle: -40, min: 0, max: Math.max(consumo, 1),
-            progress: { show: true, width: 16, itemStyle: { color: COLORS.fv, shadowBlur: 20, shadowColor: 'rgba(51,209,122,0.4)' } },
+            progress: { show: true, width: 16, itemStyle: { color: '#f6c344', shadowBlur: 20, shadowColor: 'rgba(246,195,68,0.45)' } },
             pointer: { show: false },
             axisLine: { lineStyle: { width: 16, color: [[1, 'rgba(255,255,255,0.05)']] } },
             axisTick: { show: false }, splitLine: { show: false }, axisLabel: { show: false },
@@ -280,6 +273,19 @@ c-13.232,0-24-10.768-24-24s10.768-24,24-24h24V64z"/>
           }
         ]
       });
+
+      // Overlay: solar icon top-left, FV total bottom-left
+      var chartEl = document.getElementById(el);
+      chartEl.style.position = 'relative';
+      var iconOv = document.createElement('div');
+      iconOv.style.cssText = 'position:absolute;top:8px;left:8px;z-index:1;pointer-events:none;line-height:0;';
+      iconOv.innerHTML = '<svg style="width:26px;height:26px;fill:#f6c344;filter:drop-shadow(0 0 5px rgba(246,195,68,0.55))" viewBox="0 0 260 244"><use href="#icon-solar"/></svg>';
+      chartEl.appendChild(iconOv);
+      var totalOv = document.createElement('div');
+      totalOv.style.cssText = 'position:absolute;bottom:10px;left:10px;z-index:1;pointer-events:none;font-size:13px;font-weight:700;color:#f6c344;letter-spacing:0.02em;line-height:1;';
+      totalOv.textContent = fmtEnergy(fv);
+      chartEl.appendChild(totalOv);
+
       return chart;
     }
 
