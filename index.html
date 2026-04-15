@@ -21,26 +21,27 @@
     .card { display: flex; flex-direction: column; min-height: 0; }
 
     .ratio-card-body { display: flex !important; overflow: hidden; }
-    .ratio-card-body > .chart { flex: 0 0 52%; min-width: 0; }
+    .ratio-card-body > .chart { flex: 0 0 46%; min-width: 0; }
     .ratio-kpis {
       flex: 1;
       display: flex;
       flex-direction: column;
       align-items: flex-start;
       justify-content: center;
-      gap: 14px;
-      padding: 10px 14px 10px 10px;
+      gap: 18px;
+      padding: 10px 14px 10px 14px;
       border-left: 1px solid rgba(255,255,255,0.07);
     }
-    .ratio-kpi { display: flex; align-items: center; gap: 10px; width: 100%; }
+    .ratio-kpi { display: flex; align-items: center; gap: 13px; width: 100%; }
     .ratio-kpi-icon {
-      flex-shrink: 0; width: 28px; height: 28px;
+      flex-shrink: 0; width: 36px; height: 36px;
       fill: rgba(255,255,255,0.82);
       filter: drop-shadow(0 0 4px rgba(255,255,255,0.18));
     }
-    .ratio-kpi-info { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
-    .ratio-kpi-value { font-size: 17px; font-weight: 700; line-height: 1.1; white-space: nowrap; }
-    .ratio-kpi-label { font-size: 10px; font-weight: 600; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
+    .ratio-kpi-icon.cyan { fill: #45d4ff; filter: drop-shadow(0 0 5px rgba(69,212,255,0.5)); }
+    .ratio-kpi-info { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+    .ratio-kpi-value { font-size: 22px; font-weight: 700; line-height: 1.1; white-space: nowrap; }
+    .ratio-kpi-label { font-size: 11px; font-weight: 600; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
   </style>
 </head>
 <body>
@@ -225,7 +226,7 @@ c-13.232,0-24-10.768-24-24s10.768-24,24-24h24V64z"/>
       if (kpisDiv) {
         kpisDiv.innerHTML =
           '<div class="ratio-kpi">' +
-            '<svg class="ratio-kpi-icon" viewBox="0 0 496 496"><use href="#icon-ev"/></svg>' +
+            '<svg class="ratio-kpi-icon cyan" viewBox="0 0 496 496"><use href="#icon-ev"/></svg>' +
             '<div class="ratio-kpi-info">' +
               '<span class="ratio-kpi-value" style="color:#45d4ff">' + fmtEnergy(ev) + '</span>' +
               '<span class="ratio-kpi-label">Ricariche EV</span>' +
@@ -279,7 +280,7 @@ c-13.232,0-24-10.768-24-24s10.768-24,24-24h24V64z"/>
       chartEl.style.position = 'relative';
       var iconOv = document.createElement('div');
       iconOv.style.cssText = 'position:absolute;top:8px;left:8px;z-index:1;pointer-events:none;line-height:0;';
-      iconOv.innerHTML = '<svg style="width:26px;height:26px;fill:#f6c344;filter:drop-shadow(0 0 5px rgba(246,195,68,0.55))" viewBox="0 0 260 244"><use href="#icon-solar"/></svg>';
+      iconOv.innerHTML = '<svg style="width:34px;height:34px;fill:#f6c344;filter:drop-shadow(0 0 6px rgba(246,195,68,0.6))" viewBox="0 0 260 244"><use href="#icon-solar"/></svg>';
       chartEl.appendChild(iconOv);
       var totalOv = document.createElement('div');
       totalOv.style.cssText = 'position:absolute;bottom:10px;left:10px;z-index:1;pointer-events:none;font-size:13px;font-weight:700;color:#f6c344;letter-spacing:0.02em;line-height:1;';
@@ -314,11 +315,11 @@ c-13.232,0-24-10.768-24-24s10.768-24,24-24h24V64z"/>
         series.push({
           name: 'Fotovoltaico', type: 'line', smooth: true,
           symbol: 'circle', symbolSize: 6, data: fvValues,
-          lineStyle: { width: 3, color: COLORS.fv },
-          itemStyle: { color: COLORS.fv, borderColor: '#1a5e3a', borderWidth: 2 },
+          lineStyle: { width: 3, color: '#f6c344' },
+          itemStyle: { color: '#f6c344', borderColor: '#7a5800', borderWidth: 2 },
           areaStyle: { color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-            { offset: 0, color: 'rgba(51,209,122,0.35)' },
-            { offset: 1, color: 'rgba(51,209,122,0.02)' }
+            { offset: 0, color: 'rgba(246,195,68,0.35)' },
+            { offset: 1, color: 'rgba(246,195,68,0.02)' }
           ])}
         });
       }
@@ -363,7 +364,7 @@ c-13.232,0-24-10.768-24-24s10.768-24,24-24h24V64z"/>
       const seriesMap = [
         { key: 'Consumo Gruppi Frigo',     color: COLORS.frigo },
         { key: 'Consumo Mensa',            color: COLORS.mensa },
-        { key: 'Ricarica Auto Elettriche', color: COLORS.charger },
+        { key: 'Ricarica Auto Elettriche', color: COLORS.cyan },
         { key: 'Consumo Edificio',         color: COLORS.edificio }
       ];
       for (const entry of seriesMap) {
