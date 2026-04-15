@@ -275,17 +275,21 @@ c-13.232,0-24-10.768-24-24s10.768-24,24-24h24V64z"/>
         ]
       });
 
-      // Overlay: solar icon top-left, FV total bottom-left
+      // Overlay: solar icon top-left, consumo bottom-left, FV bottom-right
       var chartEl = document.getElementById(el);
       chartEl.style.position = 'relative';
       var iconOv = document.createElement('div');
       iconOv.style.cssText = 'position:absolute;top:8px;left:8px;z-index:1;pointer-events:none;line-height:0;';
       iconOv.innerHTML = '<svg style="width:34px;height:34px;fill:#f6c344;filter:drop-shadow(0 0 6px rgba(246,195,68,0.6))" viewBox="0 0 260 244"><use href="#icon-solar"/></svg>';
       chartEl.appendChild(iconOv);
-      var totalOv = document.createElement('div');
-      totalOv.style.cssText = 'position:absolute;bottom:10px;left:10px;z-index:1;pointer-events:none;font-size:13px;font-weight:700;color:#f6c344;letter-spacing:0.02em;line-height:1;';
-      totalOv.textContent = fmtEnergy(fv);
-      chartEl.appendChild(totalOv);
+      var consumoOv = document.createElement('div');
+      consumoOv.style.cssText = 'position:absolute;bottom:10px;left:10px;z-index:1;pointer-events:none;font-size:13px;font-weight:700;color:#b2c3de;letter-spacing:0.02em;line-height:1;';
+      consumoOv.textContent = fmtEnergy(consumo);
+      chartEl.appendChild(consumoOv);
+      var fvOv = document.createElement('div');
+      fvOv.style.cssText = 'position:absolute;bottom:10px;right:10px;z-index:1;pointer-events:none;font-size:13px;font-weight:700;color:#f6c344;letter-spacing:0.02em;line-height:1;text-align:right;';
+      fvOv.textContent = fmtEnergy(fv);
+      chartEl.appendChild(fvOv);
 
       return chart;
     }
