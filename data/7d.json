@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-04-15 09:21",
+  "updated_at": "2026-04-15 19:19",
   "totale_vs_fv": {
     "consumo": 9900,
     "fotovoltaico": 3216
@@ -35,13 +35,34 @@
     }
   ],
   "fotovoltaico_totale": [
-    { "label": "Mer", "value": 420 },
-    { "label": "Gio", "value": 380 },
-    { "label": "Ven", "value": 510 },
-    { "label": "Sab", "value": 490 },
-    { "label": "Dom", "value": 520 },
-    { "label": "Lun", "value": 450 },
-    { "label": "Mar", "value": 446 }
+    {
+      "label": "Mer",
+      "value": 602
+    },
+    {
+      "label": "Gio",
+      "value": 599
+    },
+    {
+      "label": "Ven",
+      "value": 574
+    },
+    {
+      "label": "Sab",
+      "value": 595
+    },
+    {
+      "label": "Dom",
+      "value": 286
+    },
+    {
+      "label": "Lun",
+      "value": 208
+    },
+    {
+      "label": "Mar",
+      "value": 352
+    }
   ],
   "consumo_parziale": {
     "labels": [
