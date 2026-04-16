@@ -8,44 +8,27 @@
   <script src="https://cdn.jsdelivr.net/npm/echarts@5"></script>
   <link rel="stylesheet" href="dashboard-theme.css"/>
   <style>
-    .t-main { min-height: 0; display: flex; flex-direction: column; }
-    #loading  { flex: 1; }
-    #dashboard {
-      flex: 1;
-      min-height: 0;
-      position: relative;
-    }
-    .slide {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      flex-direction: column;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.6s ease;
-    }
-    .slide.active {
-      opacity: 1;
-      pointer-events: auto;
-    }
-    .card { display: flex; flex-direction: column; min-height: 0; flex: 1; }
+    /* ── Nav in header ── */
+    .t-nav { display:flex; flex-direction:column; align-items:center; gap:6px; flex-shrink:0; margin:0 20px; }
+    .nav-dots { display:flex; gap:10px; align-items:center; }
+    .nav-dot { width:10px; height:10px; border-radius:50%; border:none;
+      background:rgba(255,255,255,0.20); cursor:pointer; padding:0;
+      transition:all 0.3s cubic-bezier(0.4,0,0.2,1); flex-shrink:0; }
+    .nav-dot.active { background:var(--cyan); box-shadow:0 0 10px rgba(69,212,255,0.6); width:28px; border-radius:5px; }
+    .nav-dot:hover:not(.active) { background:rgba(255,255,255,0.40); }
+    .nav-arrows { display:flex; gap:8px; }
+    .nav-arrow { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12);
+      color:var(--text); border-radius:10px; padding:3px 14px;
+      cursor:pointer; font-size:14px; transition:all 0.2s; line-height:1.4; }
+    .nav-arrow:hover { background:rgba(255,255,255,0.14); border-color:rgba(255,255,255,0.25); }
 
-    /* ── Slide dots ── */
-    .slide-dots {
-      display: flex; align-items: center; gap: 10px; margin-left: auto;
-    }
-    .slide-dot {
-      width: 8px; height: 8px; border-radius: 50%;
-      background: rgba(255,255,255,0.18);
-      cursor: pointer;
-      transition: background 0.3s, transform 0.3s;
-      border: none; padding: 0;
-    }
-    .slide-dot.active {
-      background: rgba(255,255,255,0.80);
-      transform: scale(1.25);
-    }
-    .slide-dot:hover { background: rgba(255,255,255,0.50); }
+    /* ── Main / Slides ── */
+    .t-main { min-height:0; display:flex; flex-direction:column; }
+    .t-loading { flex:1; }
+    .slides-wrapper { flex:1; position:relative; overflow:hidden; }
+    .slide { position:absolute; inset:0; opacity:0; pointer-events:none; transition:opacity 0.35s ease; display:flex; flex-direction:column; }
+    .slide.active { opacity:1; pointer-events:auto; z-index:1; }
+    .card { display:flex; flex-direction:column; min-height:0; flex:1; }
 
     /* ── Mega-card body (flex column, 3 sections stacked) ── */
     .mega-body { display: flex !important; flex-direction: column; overflow: hidden; }
@@ -165,17 +148,28 @@ c-13.232,0-24-10.768-24-24s10.768-24,24-24h24V64z"/>
       <div class="t-dot"></div>
       <div class="t-titles">
         <div class="t-title">Allianz Trade - Statistiche consumi</div>
-        <div class="t-sub">Consumi elettrici e produzione fotovoltaica · 24h · 7 giorni · 30 giorni</div>
+        <div class="t-sub" id="tSub">Consumi elettrici e produzione fotovoltaica · ieri</div>
+      </div>
+    </div>
+    <div class="t-nav">
+      <div class="nav-dots" id="navDots">
+        <button class="nav-dot active" data-slide="0" title="Ieri (24h)"></button>
+        <button class="nav-dot"        data-slide="1" title="Ultima settimana (7d)"></button>
+        <button class="nav-dot"        data-slide="2" title="Ultimo mese (30d)"></button>
+      </div>
+      <div class="nav-arrows">
+        <button class="nav-arrow" id="prevBtn">&#8592;</button>
+        <button class="nav-arrow" id="nextBtn">&#8594;</button>
       </div>
     </div>
   </header>
 
   <div class="t-main">
     <div id="loading" class="t-loading">Caricamento dashboard…</div>
-    <div id="dashboard" style="display:none;">
+    <div id="slidesContainer" class="slides-wrapper" style="display:none;">
 
       <!-- ── Slide 24H ── -->
-      <div class="card slide active" id="slide-24h">
+      <div class="card slide" id="slide-24h">
         <div class="card-head"><span class="card-title">Riepilogo consumi e produzione di ieri</span></div>
         <div class="card-body mega-body">
           <div class="mega-section mega-ratio">
@@ -239,11 +233,6 @@ c-13.232,0-24-10.768-24-24s10.768-24,24-24h24V64z"/>
 
   <footer class="t-footer">
     <div class="t-update" id="tUpdate">—</div>
-    <div class="slide-dots">
-      <button class="slide-dot active" data-idx="0" title="Ieri (24h)"></button>
-      <button class="slide-dot"        data-idx="1" title="Ultima settimana (7d)"></button>
-      <button class="slide-dot"        data-idx="2" title="Ultimo mese (30d)"></button>
-    </div>
   </footer>
 
   <script>
@@ -490,29 +479,115 @@ c-13.232,0-24-10.768-24-24s10.768-24,24-24h24V64z"/>
       return chart;
     }
 
-    /* ── Slideshow ── */
-    const SLIDE_IDS = ['slide-24h', 'slide-7d', 'slide-30d'];
-    const SLIDE_INTERVAL = 2 * 60 * 1000; // 2 minuti
-    let currentSlide = 0;
-    let slideTimer = null;
-    const slideCharts = { 0: [], 1: [], 2: [] };
+    /* ═══════════════════════════════════════════════════
+       CAROUSEL — identico al sistema occupancy
+    ═══════════════════════════════════════════════════ */
+    const TOTAL_SLIDES = 3;
+    const SLIDE_META = [
+      { subtitle: 'Consumi elettrici e produzione fotovoltaica · ieri' },
+      { subtitle: 'Consumi elettrici e produzione fotovoltaica · ultima settimana' },
+      { subtitle: 'Consumi elettrici e produzione fotovoltaica · ultimo mese' }
+    ];
 
-    function showSlide(idx) {
-      SLIDE_IDS.forEach((id, i) => {
-        const el = document.getElementById(id);
-        el.classList.toggle('active', i === idx);
+    const allCharts = [];
+    const chartsPerSlide = { 0: [], 1: [], 2: [] };
+    const chartByEl = new Map();
+    const slideInited = new Set();
+    let rawDataStore = null;
+    let currentSlide = 0;
+    let autoTimer = null;
+
+    const resizeObserver = new ResizeObserver(function(entries) {
+      entries.forEach(function(entry) {
+        const c = chartByEl.get(entry.target);
+        if (c) c.resize();
       });
-      document.querySelectorAll('.slide-dot').forEach((d, i) => {
-        d.classList.toggle('active', i === idx);
-      });
-      currentSlide = idx;
-      // Resize charts of the newly visible slide after transition
-      setTimeout(() => slideCharts[idx].forEach(c => c.resize()), 120);
+    });
+
+    function registerChart(el, chart, slideIdx) {
+      allCharts.push(chart);
+      chartsPerSlide[slideIdx].push(chart);
+      chartByEl.set(el, chart);
+      resizeObserver.observe(el);
+      return chart;
     }
 
-    function startAutoSlide() {
-      if (slideTimer) clearInterval(slideTimer);
-      slideTimer = setInterval(() => showSlide((currentSlide + 1) % SLIDE_IDS.length), SLIDE_INTERVAL);
+    const slides = document.querySelectorAll('.slide');
+    const dots   = document.querySelectorAll('.nav-dot');
+
+    function goToSlide(idx) {
+      const target = ((idx % TOTAL_SLIDES) + TOTAL_SLIDES) % TOTAL_SLIDES;
+      if (target === currentSlide) return;
+      slides[currentSlide].classList.remove('active');
+      dots[currentSlide].classList.remove('active');
+      currentSlide = target;
+      slides[currentSlide].classList.add('active');
+      dots[currentSlide].classList.add('active');
+      document.getElementById('tSub').textContent = SLIDE_META[currentSlide].subtitle;
+      var hash = '#slide-' + currentSlide;
+      if (location.hash !== hash) history.replaceState(null, '', hash);
+      if (rawDataStore && !slideInited.has(currentSlide)) initSlide(currentSlide);
+      setTimeout(function() {
+        (chartsPerSlide[currentSlide] || []).forEach(function(c){ c.resize(); });
+      }, 50);
+      resetAutoAdvance();
+    }
+
+    function startAutoAdvance() {
+      stopAutoAdvance();
+      autoTimer = setInterval(function(){ goToSlide(currentSlide + 1); }, 120000);
+    }
+    function stopAutoAdvance()  { if (autoTimer) { clearInterval(autoTimer); autoTimer = null; } }
+    function resetAutoAdvance() { startAutoAdvance(); }
+
+    document.getElementById('prevBtn').addEventListener('click', function(){ goToSlide(currentSlide - 1); });
+    document.getElementById('nextBtn').addEventListener('click', function(){ goToSlide(currentSlide + 1); });
+    dots.forEach(function(dot) {
+      dot.addEventListener('click', function(){ goToSlide(parseInt(dot.dataset.slide)); });
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'ArrowLeft')  goToSlide(currentSlide - 1);
+      if (e.key === 'ArrowRight') goToSlide(currentSlide + 1);
+    });
+    window.addEventListener('hashchange', function() {
+      var m = location.hash.match(/^#slide-(\d+)$/);
+      if (m) goToSlide(parseInt(m[1]));
+    });
+    var container = document.getElementById('slidesContainer');
+    container.addEventListener('mouseenter', stopAutoAdvance);
+    container.addEventListener('mouseleave', startAutoAdvance);
+
+    /* ═══════════════════════════════════════════════════
+       LAZY SLIDE INIT
+    ═══════════════════════════════════════════════════ */
+    function initSlide(idx) {
+      if (slideInited.has(idx) || !rawDataStore) return;
+      slideInited.add(idx);
+      const rd = rawDataStore;
+      if (idx === 0) {
+        const domR = document.getElementById('chart-ratio-24h');
+        const domT = document.getElementById('chart-total-24h');
+        const domP = document.getElementById('chart-partial-24h');
+        registerChart(domR, buildRatioChart('chart-ratio-24h', 'kpis-ratio-24h', rd.d24), 0);
+        registerChart(domT, buildTotalChart('chart-total-24h', rd.d24), 0);
+        registerChart(domP, buildPartialChart('chart-partial-24h', rd.d24), 0);
+      }
+      if (idx === 1) {
+        const domR = document.getElementById('chart-ratio-7d');
+        const domT = document.getElementById('chart-total-7d');
+        const domP = document.getElementById('chart-partial-7d');
+        registerChart(domR, buildRatioChart('chart-ratio-7d', 'kpis-ratio-7d', rd.d7), 1);
+        registerChart(domT, buildTotalChart('chart-total-7d', rd.d7), 1);
+        registerChart(domP, buildPartialChart('chart-partial-7d', rd.d7), 1);
+      }
+      if (idx === 2) {
+        const domR = document.getElementById('chart-ratio-30d');
+        const domT = document.getElementById('chart-total-30d');
+        const domP = document.getElementById('chart-partial-30d');
+        registerChart(domR, buildRatioChart('chart-ratio-30d', 'kpis-ratio-30d', rd.d30), 2);
+        registerChart(domT, buildTotalChart('chart-total-30d', rd.d30), 2);
+        registerChart(domP, buildPartialChart('chart-partial-30d', rd.d30), 2);
+      }
     }
 
     async function init() {
@@ -525,45 +600,29 @@ c-13.232,0-24-10.768-24-24s10.768-24,24-24h24V64z"/>
       if (failed.length) throw new Error(`Caricamento dati incompleto (${failed.length}/3 file mancanti o non validi)`);
 
       const [d24, d7, d30] = results.map(r => r.value);
+      rawDataStore = { d24, d7, d30 };
+
       const lastUpdated = [d24.updated_at, d7.updated_at, d30.updated_at].filter(Boolean).sort().slice(-1)[0];
       const formattedUpdate = formatTimestamp(lastUpdated);
       document.getElementById('tUpdate').textContent =
         formattedUpdate ? `Ultimo aggiornamento: ${formattedUpdate}` : 'Dati aggiornati';
 
       document.getElementById('loading').style.display = 'none';
-      document.getElementById('dashboard').style.display = 'block';
+      document.getElementById('slidesContainer').style.display = 'block';
 
-      slideCharts[0] = [
-        buildRatioChart('chart-ratio-24h', 'kpis-ratio-24h', d24),
-        buildTotalChart('chart-total-24h', d24),
-        buildPartialChart('chart-partial-24h', d24)
-      ];
-      slideCharts[1] = [
-        buildRatioChart('chart-ratio-7d', 'kpis-ratio-7d', d7),
-        buildTotalChart('chart-total-7d', d7),
-        buildPartialChart('chart-partial-7d', d7)
-      ];
-      slideCharts[2] = [
-        buildRatioChart('chart-ratio-30d', 'kpis-ratio-30d', d30),
-        buildTotalChart('chart-total-30d', d30),
-        buildPartialChart('chart-partial-30d', d30)
-      ];
+      // Init slide 0, attiva e avvia carousel
+      initSlide(0);
+      slides[0].classList.add('active');
+      dots[0].classList.add('active');
 
-      // Mostra primo slide e avvia auto-scorrimento
-      showSlide(0);
-      startAutoSlide();
+      // Hash deep-link
+      var m = location.hash.match(/^#slide-(\d+)$/);
+      if (m) {
+        var startIdx = Math.min(parseInt(m[1]), TOTAL_SLIDES - 1);
+        if (startIdx > 0) goToSlide(startIdx);
+      }
 
-      // Click sui dots
-      document.querySelectorAll('.slide-dot').forEach(dot => {
-        dot.addEventListener('click', () => {
-          showSlide(Number(dot.dataset.idx));
-          startAutoSlide(); // resetta il timer al click manuale
-        });
-      });
-
-      window.addEventListener('resize', () =>
-        Object.values(slideCharts).flat().forEach(c => c.resize())
-      );
+      startAutoAdvance();
     }
 
     init().catch(err => {
