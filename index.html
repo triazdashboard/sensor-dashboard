@@ -38,7 +38,9 @@
       border-right: 1px solid rgba(255,255,255,0.07);
       min-height: 0; min-width: 0; overflow: hidden;
     }
-    .mega-gauge { display: none; }
+    .mega-gauge {
+      flex: 0 0 44%; position: relative; min-height: 0; overflow: hidden;
+    }
     .mega-right {
       flex: 1; display: flex; flex-direction: column;
       min-height: 0; min-width: 0; overflow: hidden;
@@ -331,8 +333,40 @@ c-13.232,0-24-10.768-24-24s10.768-24,24-24h24V64z"/>
           '</div>';
       }
 
-      // Gauge nascosta — serve solo per registerChart
-      chart.setOption({ backgroundColor: 'transparent', series: [] });
+      chart.setOption({
+        backgroundColor: 'transparent',
+        animationDuration: 1200,
+        title: {
+          text: `${balance.toFixed(0)}%`,
+          left: 'center', top: '46%',
+          textStyle: { color: COLORS.text, fontSize: 28, fontWeight: 500 }
+        },
+        tooltip: { trigger: 'item', backgroundColor: 'rgba(7,17,31,0.96)', borderWidth: 0, textStyle: { color: '#fff' } },
+        series: [
+          {
+            name: 'Consumo Totale', type: 'gauge',
+            center: ['50%', '50%'], radius: '78%',
+            startAngle: 220, endAngle: -40, min: 0, max: Math.max(consumo, 1),
+            progress: { show: true, width: 18, itemStyle: { color: COLORS.total, shadowBlur: 20, shadowColor: 'rgba(76,125,255,0.45)' } },
+            pointer: { show: false },
+            axisLine: { lineStyle: { width: 18, color: [[1, 'rgba(255,255,255,0.06)']] } },
+            axisTick: { show: false }, splitLine: { show: false }, axisLabel: { show: false },
+            detail: { show: false }, anchor: { show: false },
+            data: [{ value: consumo }]
+          },
+          {
+            name: 'Fotovoltaico', type: 'gauge',
+            center: ['50%', '50%'], radius: '56%',
+            startAngle: 220, endAngle: -40, min: 0, max: Math.max(consumo, 1),
+            progress: { show: true, width: 16, itemStyle: { color: '#f6c344', shadowBlur: 20, shadowColor: 'rgba(246,195,68,0.45)' } },
+            pointer: { show: false },
+            axisLine: { lineStyle: { width: 16, color: [[1, 'rgba(255,255,255,0.05)']] } },
+            axisTick: { show: false }, splitLine: { show: false }, axisLabel: { show: false },
+            detail: { show: false }, anchor: { show: false },
+            data: [{ value: fv }]
+          }
+        ]
+      });
 
       return chart;
     }
