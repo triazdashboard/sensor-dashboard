@@ -30,46 +30,53 @@
     .slide.active { opacity:1; pointer-events:auto; z-index:1; }
     .card { display:flex; flex-direction:column; min-height:0; flex:1; }
 
-    /* ── Mega-card body (flex column, 3 sections stacked) ── */
-    .mega-body { display: flex !important; flex-direction: column; overflow: hidden; }
-    .mega-section {
-      flex: 1; min-height: 0; position: relative; overflow: hidden;
+    /* ── Mega-card body: 2 colonne (sinistra: gauge+kpi | destra: total/partial) ── */
+    .mega-body { display: flex !important; flex-direction: row; overflow: hidden; }
+
+    .mega-left {
+      flex: 0 0 26%; display: flex; flex-direction: column;
+      border-right: 1px solid rgba(255,255,255,0.07);
+      min-height: 0; min-width: 0; overflow: hidden;
     }
-    .mega-section.mega-ratio {
-      flex: 0 0 32%;
-      display: flex; flex-direction: row; overflow: hidden;
+    .mega-gauge {
+      flex: 1; position: relative; min-height: 0; overflow: hidden;
     }
-    .mega-divider { flex-shrink: 0; height: 1px; background: rgba(255,255,255,0.07); }
+    .mega-right {
+      flex: 1; display: flex; flex-direction: column;
+      min-height: 0; min-width: 0; overflow: hidden;
+    }
+    .mega-right-top  { flex: 1; position: relative; min-height: 0; overflow: hidden; }
+    .mega-hdivider   { flex-shrink: 0; height: 1px; background: rgba(255,255,255,0.07); }
+    .mega-right-bottom { flex: 1; position: relative; min-height: 0; overflow: hidden; }
 
     /* ── Calendar icon overlay ── */
     .cal-icon {
       position: absolute; top: 8px; right: 10px;
-      width: 46px; height: 46px;
+      width: 40px; height: 40px;
       fill: none;
       stroke: rgba(255,255,255,0.75);
       stroke-linecap: round; stroke-linejoin: round; stroke-width: 2.2;
       z-index: 2; pointer-events: none;
     }
 
-    /* ── Ratio gauge section internals ── */
-    .mega-ratio > .chart { flex: 0 0 46%; min-width: 0; }
+    /* ── KPI panel (bottom of left column) ── */
     .ratio-kpis {
-      flex: 1;
+      flex: 0 0 auto;
       display: flex; flex-direction: column;
       align-items: flex-start; justify-content: center;
-      gap: 18px; padding: 10px 14px 10px 14px;
-      border-left: 1px solid rgba(255,255,255,0.07);
+      gap: 14px; padding: 10px 14px;
+      border-top: 1px solid rgba(255,255,255,0.07);
     }
-    .ratio-kpi { display: flex; align-items: center; gap: 13px; width: 100%; }
+    .ratio-kpi { display: flex; align-items: center; gap: 11px; width: 100%; }
     .ratio-kpi-icon {
-      flex-shrink: 0; width: 36px; height: 36px;
+      flex-shrink: 0; width: 32px; height: 32px;
       fill: rgba(255,255,255,0.82);
       filter: drop-shadow(0 0 4px rgba(255,255,255,0.18));
     }
     .ratio-kpi-icon.cyan { fill: #45d4ff; filter: drop-shadow(0 0 5px rgba(69,212,255,0.5)); }
-    .ratio-kpi-info { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
-    .ratio-kpi-value { font-size: 22px; font-weight: 700; line-height: 1.1; white-space: nowrap; }
-    .ratio-kpi-label { font-size: 11px; font-weight: 600; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
+    .ratio-kpi-info { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+    .ratio-kpi-value { font-size: 18px; font-weight: 700; line-height: 1.1; white-space: nowrap; }
+    .ratio-kpi-label { font-size: 10px; font-weight: 600; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
   </style>
 </head>
 <body>
@@ -172,18 +179,17 @@ c-13.232,0-24-10.768-24-24s10.768-24,24-24h24V64z"/>
       <div class="card slide" id="slide-24h">
         <div class="card-head"><span class="card-title">Riepilogo consumi e produzione di ieri</span></div>
         <div class="card-body mega-body">
-          <div class="mega-section mega-ratio">
-            <svg class="cal-icon" viewBox="0 0 48 48"><use href="#icon-cal-1"/></svg>
-            <div id="chart-ratio-24h" class="chart"></div>
+          <div class="mega-left">
+            <div class="mega-gauge">
+              <svg class="cal-icon" viewBox="0 0 48 48"><use href="#icon-cal-1"/></svg>
+              <div id="chart-ratio-24h" class="chart"></div>
+            </div>
             <div class="ratio-kpis" id="kpis-ratio-24h"></div>
           </div>
-          <div class="mega-divider"></div>
-          <div class="mega-section">
-            <div id="chart-total-24h" class="chart"></div>
-          </div>
-          <div class="mega-divider"></div>
-          <div class="mega-section">
-            <div id="chart-partial-24h" class="chart"></div>
+          <div class="mega-right">
+            <div class="mega-right-top"><div id="chart-total-24h" class="chart"></div></div>
+            <div class="mega-hdivider"></div>
+            <div class="mega-right-bottom"><div id="chart-partial-24h" class="chart"></div></div>
           </div>
         </div>
       </div>
@@ -192,18 +198,17 @@ c-13.232,0-24-10.768-24-24s10.768-24,24-24h24V64z"/>
       <div class="card slide" id="slide-7d">
         <div class="card-head"><span class="card-title">Riepilogo consumi e produzione dell'ultima settimana</span></div>
         <div class="card-body mega-body">
-          <div class="mega-section mega-ratio">
-            <svg class="cal-icon" viewBox="0 0 48 48"><use href="#icon-cal-7"/></svg>
-            <div id="chart-ratio-7d" class="chart"></div>
+          <div class="mega-left">
+            <div class="mega-gauge">
+              <svg class="cal-icon" viewBox="0 0 48 48"><use href="#icon-cal-7"/></svg>
+              <div id="chart-ratio-7d" class="chart"></div>
+            </div>
             <div class="ratio-kpis" id="kpis-ratio-7d"></div>
           </div>
-          <div class="mega-divider"></div>
-          <div class="mega-section">
-            <div id="chart-total-7d" class="chart"></div>
-          </div>
-          <div class="mega-divider"></div>
-          <div class="mega-section">
-            <div id="chart-partial-7d" class="chart"></div>
+          <div class="mega-right">
+            <div class="mega-right-top"><div id="chart-total-7d" class="chart"></div></div>
+            <div class="mega-hdivider"></div>
+            <div class="mega-right-bottom"><div id="chart-partial-7d" class="chart"></div></div>
           </div>
         </div>
       </div>
@@ -212,18 +217,17 @@ c-13.232,0-24-10.768-24-24s10.768-24,24-24h24V64z"/>
       <div class="card slide" id="slide-30d">
         <div class="card-head"><span class="card-title">Riepilogo consumi e produzione dell'ultimo mese</span></div>
         <div class="card-body mega-body">
-          <div class="mega-section mega-ratio">
-            <svg class="cal-icon" viewBox="0 0 48 48"><use href="#icon-cal-30"/></svg>
-            <div id="chart-ratio-30d" class="chart"></div>
+          <div class="mega-left">
+            <div class="mega-gauge">
+              <svg class="cal-icon" viewBox="0 0 48 48"><use href="#icon-cal-30"/></svg>
+              <div id="chart-ratio-30d" class="chart"></div>
+            </div>
             <div class="ratio-kpis" id="kpis-ratio-30d"></div>
           </div>
-          <div class="mega-divider"></div>
-          <div class="mega-section">
-            <div id="chart-total-30d" class="chart"></div>
-          </div>
-          <div class="mega-divider"></div>
-          <div class="mega-section">
-            <div id="chart-partial-30d" class="chart"></div>
+          <div class="mega-right">
+            <div class="mega-right-top"><div id="chart-total-30d" class="chart"></div></div>
+            <div class="mega-hdivider"></div>
+            <div class="mega-right-bottom"><div id="chart-partial-30d" class="chart"></div></div>
           </div>
         </div>
       </div>
