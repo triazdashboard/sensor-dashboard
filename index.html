@@ -13,12 +13,39 @@
     #dashboard {
       flex: 1;
       min-height: 0;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: 1fr;
-      gap: 10px;
+      position: relative;
     }
-    .card { display: flex; flex-direction: column; min-height: 0; }
+    .slide {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.6s ease;
+    }
+    .slide.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .card { display: flex; flex-direction: column; min-height: 0; flex: 1; }
+
+    /* ── Slide dots ── */
+    .slide-dots {
+      display: flex; align-items: center; gap: 10px; margin-left: auto;
+    }
+    .slide-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: rgba(255,255,255,0.18);
+      cursor: pointer;
+      transition: background 0.3s, transform 0.3s;
+      border: none; padding: 0;
+    }
+    .slide-dot.active {
+      background: rgba(255,255,255,0.80);
+      transform: scale(1.25);
+    }
+    .slide-dot:hover { background: rgba(255,255,255,0.50); }
 
     /* ── Mega-card body (flex column, 3 sections stacked) ── */
     .mega-body { display: flex !important; flex-direction: column; overflow: hidden; }
@@ -147,8 +174,8 @@ c-13.232,0-24-10.768-24-24s10.768-24,24-24h24V64z"/>
     <div id="loading" class="t-loading">Caricamento dashboard…</div>
     <div id="dashboard" style="display:none;">
 
-      <!-- ── Colonna 24H ── -->
-      <div class="card">
+      <!-- ── Slide 24H ── -->
+      <div class="card slide active" id="slide-24h">
         <div class="card-head"><span class="card-title">Riepilogo consumi e produzione di ieri</span></div>
         <div class="card-body mega-body">
           <div class="mega-section mega-ratio">
@@ -167,8 +194,8 @@ c-13.232,0-24-10.768-24-24s10.768-24,24-24h24V64z"/>
         </div>
       </div>
 
-      <!-- ── Colonna 7D ── -->
-      <div class="card">
+      <!-- ── Slide 7D ── -->
+      <div class="card slide" id="slide-7d">
         <div class="card-head"><span class="card-title">Riepilogo consumi e produzione dell'ultima settimana</span></div>
         <div class="card-body mega-body">
           <div class="mega-section mega-ratio">
@@ -187,8 +214,8 @@ c-13.232,0-24-10.768-24-24s10.768-24,24-24h24V64z"/>
         </div>
       </div>
 
-      <!-- ── Colonna 30D ── -->
-      <div class="card">
+      <!-- ── Slide 30D ── -->
+      <div class="card slide" id="slide-30d">
         <div class="card-head"><span class="card-title">Riepilogo consumi e produzione dell'ultimo mese</span></div>
         <div class="card-body mega-body">
           <div class="mega-section mega-ratio">
@@ -212,6 +239,11 @@ c-13.232,0-24-10.768-24-24s10.768-24,24-24h24V64z"/>
 
   <footer class="t-footer">
     <div class="t-update" id="tUpdate">—</div>
+    <div class="slide-dots">
+      <button class="slide-dot active" data-idx="0" title="Ieri (24h)"></button>
+      <button class="slide-dot"        data-idx="1" title="Ultima settimana (7d)"></button>
+      <button class="slide-dot"        data-idx="2" title="Ultimo mese (30d)"></button>
+    </div>
   </footer>
 
   <script>
@@ -458,6 +490,31 @@ c-13.232,0-24-10.768-24-24s10.768-24,24-24h24V64z"/>
       return chart;
     }
 
+    /* ── Slideshow ── */
+    const SLIDE_IDS = ['slide-24h', 'slide-7d', 'slide-30d'];
+    const SLIDE_INTERVAL = 2 * 60 * 1000; // 2 minuti
+    let currentSlide = 0;
+    let slideTimer = null;
+    const slideCharts = { 0: [], 1: [], 2: [] };
+
+    function showSlide(idx) {
+      SLIDE_IDS.forEach((id, i) => {
+        const el = document.getElementById(id);
+        el.classList.toggle('active', i === idx);
+      });
+      document.querySelectorAll('.slide-dot').forEach((d, i) => {
+        d.classList.toggle('active', i === idx);
+      });
+      currentSlide = idx;
+      // Resize charts of the newly visible slide after transition
+      setTimeout(() => slideCharts[idx].forEach(c => c.resize()), 120);
+    }
+
+    function startAutoSlide() {
+      if (slideTimer) clearInterval(slideTimer);
+      slideTimer = setInterval(() => showSlide((currentSlide + 1) % SLIDE_IDS.length), SLIDE_INTERVAL);
+    }
+
     async function init() {
       const results = await Promise.allSettled([
         fetchJson('./data/24h.json'),
@@ -474,21 +531,39 @@ c-13.232,0-24-10.768-24-24s10.768-24,24-24h24V64z"/>
         formattedUpdate ? `Ultimo aggiornamento: ${formattedUpdate}` : 'Dati aggiornati';
 
       document.getElementById('loading').style.display = 'none';
-      document.getElementById('dashboard').style.display = 'grid';
+      document.getElementById('dashboard').style.display = 'block';
 
-      const charts = [];
-      charts.push(buildRatioChart('chart-ratio-24h', 'kpis-ratio-24h', d24));
-      charts.push(buildRatioChart('chart-ratio-7d', 'kpis-ratio-7d', d7));
-      charts.push(buildRatioChart('chart-ratio-30d', 'kpis-ratio-30d', d30));
-      charts.push(buildTotalChart('chart-total-24h', d24, 'Consumo Totale'));
-      charts.push(buildTotalChart('chart-total-7d', d7, 'Consumo Totale'));
-      charts.push(buildTotalChart('chart-total-30d', d30, 'Consumo Totale'));
-      charts.push(buildPartialChart('chart-partial-24h', d24));
-      charts.push(buildPartialChart('chart-partial-7d', d7));
-      charts.push(buildPartialChart('chart-partial-30d', d30));
+      slideCharts[0] = [
+        buildRatioChart('chart-ratio-24h', 'kpis-ratio-24h', d24),
+        buildTotalChart('chart-total-24h', d24),
+        buildPartialChart('chart-partial-24h', d24)
+      ];
+      slideCharts[1] = [
+        buildRatioChart('chart-ratio-7d', 'kpis-ratio-7d', d7),
+        buildTotalChart('chart-total-7d', d7),
+        buildPartialChart('chart-partial-7d', d7)
+      ];
+      slideCharts[2] = [
+        buildRatioChart('chart-ratio-30d', 'kpis-ratio-30d', d30),
+        buildTotalChart('chart-total-30d', d30),
+        buildPartialChart('chart-partial-30d', d30)
+      ];
 
-      requestAnimationFrame(() => charts.forEach(c => c.resize()));
-      window.addEventListener('resize', () => charts.forEach(c => c.resize()));
+      // Mostra primo slide e avvia auto-scorrimento
+      showSlide(0);
+      startAutoSlide();
+
+      // Click sui dots
+      document.querySelectorAll('.slide-dot').forEach(dot => {
+        dot.addEventListener('click', () => {
+          showSlide(Number(dot.dataset.idx));
+          startAutoSlide(); // resetta il timer al click manuale
+        });
+      });
+
+      window.addEventListener('resize', () =>
+        Object.values(slideCharts).flat().forEach(c => c.resize())
+      );
     }
 
     init().catch(err => {
