@@ -3,37 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Allianz Trade – Statistiche Consumi · Ieri</title>
+  <title>Allianz Trade – Statistiche Consumi · Ultima Settimana</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
   <script src="https://cdn.jsdelivr.net/npm/echarts@5"></script>
   <link rel="stylesheet" href="dashboard-theme.css"/>
   <style>
-    /* ── Main: CSS Grid → il card riceve un'altezza definita dal track 1fr ── */
     .t-main { display:grid; grid-template-rows:1fr; min-height:0; }
     .card { display:flex; flex-direction:column; min-height:0; }
-
-    /* ── Mega-card body: 2 colonne (sinistra: gauge+kpi | destra: total/partial) ── */
     .mega-body { display:flex !important; flex-direction:row; overflow:hidden; }
-    .mega-left {
-      flex:0 0 26%; display:flex; flex-direction:column;
-      border-right:1px solid rgba(255,255,255,0.07);
-      min-height:0; min-width:0; overflow:hidden;
-    }
+    .mega-left { flex:0 0 26%; display:flex; flex-direction:column; border-right:1px solid rgba(255,255,255,0.07); min-height:0; min-width:0; overflow:hidden; }
     .mega-gauge { flex:0 0 44%; position:relative; min-height:0; overflow:hidden; }
     .mega-right { flex:1; display:flex; flex-direction:column; min-height:0; min-width:0; overflow:hidden; }
     .mega-right-top    { flex:1; position:relative; min-height:0; overflow:hidden; }
     .mega-hdivider     { flex-shrink:0; height:1px; background:rgba(255,255,255,0.07); }
     .mega-right-bottom { flex:1; position:relative; min-height:0; overflow:hidden; }
-
-    /* ── Calendar icon overlay ── */
-    .cal-icon {
-      position:absolute; top:8px; right:10px; width:40px; height:40px;
-      fill:none; stroke:rgba(255,255,255,0.75);
-      stroke-linecap:round; stroke-linejoin:round; stroke-width:2.2;
-      z-index:2; pointer-events:none;
-    }
-
-    /* ── KPI panel ── */
+    .cal-icon { position:absolute; top:8px; right:10px; width:40px; height:40px; fill:none; stroke:rgba(255,255,255,0.75); stroke-linecap:round; stroke-linejoin:round; stroke-width:2.2; z-index:2; pointer-events:none; }
     .ratio-kpis { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:space-evenly; padding:16px 20px; }
     .ratio-kpi { display:flex; align-items:center; gap:16px; }
     .ratio-kpi-icon { flex-shrink:0; width:46px; height:46px; fill:rgba(255,255,255,0.82); filter:drop-shadow(0 0 4px rgba(255,255,255,0.18)); }
@@ -99,23 +83,8 @@ c-13.232,0-24-10.768-24-24s10.768-24,24-24h24V64z"/>
       <path d="M17 35H31V37H17V35Z"/>
       <path fill-rule="evenodd" clip-rule="evenodd" d="M29 41H19L19 42H29V41ZM17 39V42C17 43.1046 17.8954 44 19 44H29C30.1046 44 31 43.1046 31 42V39H17Z"/>
     </symbol>
-    <symbol id="icon-cal-1" viewBox="0 0 48 48">
-      <line x1="21.25" y1="20.925" x2="24.75" y2="19"/>
-      <line x1="24.75" y1="19" x2="24.75" y2="33"/>
-      <path d="m8.0988,7.8588c-1.0601,0-1.9194.8593-1.9194,1.9194v31.8025c0,1.06.8593,1.9193,1.9193,1.9193h31.8025c1.06,0,1.9193-.8592,1.9194-1.9192h0V9.7782c0-1.0601-.8593-1.9194-1.9194-1.9194H8.0988Z"/>
-      <line x1="12.8166" y1="10.258" x2="12.8166" y2="4.5"/>
-      <line x1="35.1834" y1="10.258" x2="35.1834" y2="4.5"/>
-    </symbol>
     <symbol id="icon-cal-7" viewBox="0 0 48 48">
       <polyline points="21.1125 33 28.6375 19 19.3625 19"/>
-      <path d="m8.0988,7.8588c-1.0601,0-1.9194.8593-1.9194,1.9194v31.8025c0,1.06.8593,1.9193,1.9193,1.9193h31.8025c1.06,0,1.9193-.8592,1.9194-1.9192h0V9.7782c0-1.0601-.8593-1.9194-1.9194-1.9194H8.0988Z"/>
-      <line x1="12.8166" y1="10.258" x2="12.8166" y2="4.5"/>
-      <line x1="35.1834" y1="10.258" x2="35.1834" y2="4.5"/>
-    </symbol>
-    <symbol id="icon-cal-30" viewBox="0 0 48 48">
-      <path d="m25.077,28.3333c0,2.5926,2.0741,4.6667,4.6667,4.6667s4.4938-2.0741,4.4938-4.6667v-4.6667c0-2.5926-2.0741-4.6667-4.4938-4.6667s-4.6667,2.0741-4.6667,4.6667v4.6667Z"/>
-      <path d="m19.4662,25.9136c1.9012,0,3.4568,1.5556,3.4568,3.4568h0c0,1.9012-1.5556,3.4568-3.4568,3.4568h-1.3827c-2.4198,0-3.284-.3457-4.321-1.2099"/>
-      <path d="m13.7625,20.2099c1.037-.8642,2.0741-1.2099,4.321-1.2099h1.3827,0c1.9012,0,3.4568,1.5555,3.4568,3.4568h0c0,1.9012-1.5556,3.4568-3.4568,3.4568h-3.4568"/>
       <path d="m8.0988,7.8588c-1.0601,0-1.9194.8593-1.9194,1.9194v31.8025c0,1.06.8593,1.9193,1.9193,1.9193h31.8025c1.06,0,1.9193-.8592,1.9194-1.9192h0V9.7782c0-1.0601-.8593-1.9194-1.9194-1.9194H8.0988Z"/>
       <line x1="12.8166" y1="10.258" x2="12.8166" y2="4.5"/>
       <line x1="35.1834" y1="10.258" x2="35.1834" y2="4.5"/>
@@ -128,7 +97,7 @@ c-13.232,0-24-10.768-24-24s10.768-24,24-24h24V64z"/>
     <div class="t-dot"></div>
     <div class="t-titles">
       <div class="t-title">Allianz Trade - Statistiche Consumi</div>
-      <div class="t-sub">Consumi elettrici e produzione fotovoltaica · ieri</div>
+      <div class="t-sub">Consumi elettrici e produzione fotovoltaica · ultima settimana</div>
     </div>
   </div>
 </header>
@@ -136,11 +105,11 @@ c-13.232,0-24-10.768-24-24s10.768-24,24-24h24V64z"/>
 <div class="t-main">
   <div id="loading" class="t-loading">Caricamento dashboard…</div>
   <div class="card" id="mainCard" style="display:none">
-    <div class="card-head"><span class="card-title">Riepilogo consumi e produzione di ieri</span></div>
+    <div class="card-head"><span class="card-title">Riepilogo consumi e produzione dell'ultima settimana</span></div>
     <div class="card-body mega-body">
       <div class="mega-left">
         <div class="mega-gauge">
-          <svg class="cal-icon" viewBox="0 0 48 48"><use href="#icon-cal-1"/></svg>
+          <svg class="cal-icon" viewBox="0 0 48 48"><use href="#icon-cal-7"/></svg>
           <div id="chart-ratio" class="chart"></div>
         </div>
         <div class="ratio-kpis" id="kpis-ratio"></div>
@@ -159,7 +128,6 @@ c-13.232,0-24-10.768-24-24s10.768-24,24-24h24V64z"/>
 </footer>
 
 <script>
-  // TV viewport fix
   (function() {
     function applyViewport() {
       document.body.style.width  = window.innerWidth  + 'px';
@@ -195,7 +163,6 @@ c-13.232,0-24-10.768-24-24s10.768-24,24-24h24V64z"/>
   });
   function reg(el, chart) { chartByEl.set(el, chart); resizeObserver.observe(el); return chart; }
 
-  /* ── Ratio / Gauge ── */
   function buildRatioChart(el, kpisId, data) {
     const chart = echarts.init(document.getElementById(el));
     const consumo = Number(data?.totale_vs_fv?.consumo || 0);
@@ -211,146 +178,86 @@ c-13.232,0-24-10.768-24-24s10.768-24,24-24h24V64z"/>
     var kpisDiv = document.getElementById(kpisId);
     if (kpisDiv) {
       kpisDiv.innerHTML =
-        '<div class="ratio-kpi">' +
-          '<svg class="ratio-kpi-icon blue" viewBox="0 0 48 48"><use href="#icon-electricity"/></svg>' +
-          '<div class="ratio-kpi-info">' +
-            '<span class="ratio-kpi-value" style="color:#4c7dff">' + fmtEnergy(consumo) + '</span>' +
-            '<span class="ratio-kpi-label">Consumo Totale</span>' +
-          '</div>' +
-        '</div>' +
-        '<div class="ratio-kpi">' +
-          '<svg class="ratio-kpi-icon yellow" viewBox="0 0 260 244"><use href="#icon-solar"/></svg>' +
-          '<div class="ratio-kpi-info">' +
-            '<span class="ratio-kpi-value" style="color:#f6c344">' + fmtEnergy(fv) + '</span>' +
-            '<span class="ratio-kpi-label">Produzione FV</span>' +
-          '</div>' +
-        '</div>' +
-        '<div class="ratio-kpi">' +
-          '<svg class="ratio-kpi-icon cyan" viewBox="0 0 496 496"><use href="#icon-ev"/></svg>' +
-          '<div class="ratio-kpi-info">' +
-            '<span class="ratio-kpi-value" style="color:#45d4ff">' + fmtEnergy(ev) + '</span>' +
-            '<span class="ratio-kpi-label">Ricariche EV</span>' +
-          '</div>' +
-        '</div>' +
-        '<div class="ratio-kpi">' +
-          '<svg class="ratio-kpi-icon green" viewBox="0 0 32 32"><use href="#icon-co2"/></svg>' +
-          '<div class="ratio-kpi-info">' +
-            '<span class="ratio-kpi-value" style="color:#33d17a">' + fmtCo2(co2) + '</span>' +
-            '<span class="ratio-kpi-label">CO\u2082 Evitata</span>' +
-          '</div>' +
-        '</div>';
+        '<div class="ratio-kpi"><svg class="ratio-kpi-icon blue" viewBox="0 0 48 48"><use href="#icon-electricity"/></svg><div class="ratio-kpi-info"><span class="ratio-kpi-value" style="color:#4c7dff">'+fmtEnergy(consumo)+'</span><span class="ratio-kpi-label">Consumo Totale</span></div></div>' +
+        '<div class="ratio-kpi"><svg class="ratio-kpi-icon yellow" viewBox="0 0 260 244"><use href="#icon-solar"/></svg><div class="ratio-kpi-info"><span class="ratio-kpi-value" style="color:#f6c344">'+fmtEnergy(fv)+'</span><span class="ratio-kpi-label">Produzione FV</span></div></div>' +
+        '<div class="ratio-kpi"><svg class="ratio-kpi-icon cyan" viewBox="0 0 496 496"><use href="#icon-ev"/></svg><div class="ratio-kpi-info"><span class="ratio-kpi-value" style="color:#45d4ff">'+fmtEnergy(ev)+'</span><span class="ratio-kpi-label">Ricariche EV</span></div></div>' +
+        '<div class="ratio-kpi"><svg class="ratio-kpi-icon green" viewBox="0 0 32 32"><use href="#icon-co2"/></svg><div class="ratio-kpi-info"><span class="ratio-kpi-value" style="color:#33d17a">'+fmtCo2(co2)+'</span><span class="ratio-kpi-label">CO\u2082 Evitata</span></div></div>';
     }
 
     chart.setOption({
-      backgroundColor: 'transparent', animationDuration: 1200,
-      title: { text: balance.toFixed(0)+'%', left:'center', top:'46%',
-        textStyle:{ color:COLORS.text, fontSize:28, fontWeight:500 } },
-      tooltip: { trigger:'item', backgroundColor:'rgba(7,17,31,0.96)', borderWidth:0, textStyle:{color:'#fff'} },
-      series: [
-        { name:'Consumo Totale', type:'gauge', center:['50%','50%'], radius:'78%',
-          startAngle:220, endAngle:-40, min:0, max:Math.max(consumo,1),
-          progress:{ show:true, width:18, itemStyle:{color:COLORS.total, shadowBlur:20, shadowColor:'rgba(76,125,255,0.45)'} },
+      backgroundColor:'transparent', animationDuration:1200,
+      title:{ text:balance.toFixed(0)+'%', left:'center', top:'46%', textStyle:{color:COLORS.text, fontSize:28, fontWeight:500} },
+      tooltip:{trigger:'item', backgroundColor:'rgba(7,17,31,0.96)', borderWidth:0, textStyle:{color:'#fff'}},
+      series:[
+        { name:'Consumo Totale', type:'gauge', center:['50%','50%'], radius:'78%', startAngle:220, endAngle:-40, min:0, max:Math.max(consumo,1),
+          progress:{show:true, width:18, itemStyle:{color:COLORS.total, shadowBlur:20, shadowColor:'rgba(76,125,255,0.45)'}},
           pointer:{show:false}, axisLine:{lineStyle:{width:18, color:[[1,'rgba(255,255,255,0.06)']]}},
-          axisTick:{show:false}, splitLine:{show:false}, axisLabel:{show:false},
-          detail:{show:false}, anchor:{show:false}, data:[{value:consumo}] },
-        { name:'Fotovoltaico', type:'gauge', center:['50%','50%'], radius:'56%',
-          startAngle:220, endAngle:-40, min:0, max:Math.max(consumo,1),
-          progress:{ show:true, width:16, itemStyle:{color:'#f6c344', shadowBlur:20, shadowColor:'rgba(246,195,68,0.45)'} },
+          axisTick:{show:false}, splitLine:{show:false}, axisLabel:{show:false}, detail:{show:false}, anchor:{show:false}, data:[{value:consumo}] },
+        { name:'Fotovoltaico', type:'gauge', center:['50%','50%'], radius:'56%', startAngle:220, endAngle:-40, min:0, max:Math.max(consumo,1),
+          progress:{show:true, width:16, itemStyle:{color:'#f6c344', shadowBlur:20, shadowColor:'rgba(246,195,68,0.45)'}},
           pointer:{show:false}, axisLine:{lineStyle:{width:16, color:[[1,'rgba(255,255,255,0.05)']]}},
-          axisTick:{show:false}, splitLine:{show:false}, axisLabel:{show:false},
-          detail:{show:false}, anchor:{show:false}, data:[{value:fv}] }
+          axisTick:{show:false}, splitLine:{show:false}, axisLabel:{show:false}, detail:{show:false}, anchor:{show:false}, data:[{value:fv}] }
       ]
     });
     return chart;
   }
 
-  /* ── Total chart ── */
   function buildTotalChart(el, data) {
     const chart = echarts.init(document.getElementById(el));
     const labels = (data?.consumo_totale || []).map(x => x.label);
     const values = (data?.consumo_totale || []).map(x => Number(x.value || 0));
     const fvValues = (data?.fotovoltaico_totale || []).map(x => Number(x.value || 0));
     const hasFv = fvValues.length > 0;
-
     const series = [
       { name:'Consumo Totale', type:'line', smooth:true, symbol:'circle', symbolSize:6, data:values,
         lineStyle:{width:3, color:COLORS.total}, itemStyle:{color:COLORS.total},
-        areaStyle:{color: new echarts.graphic.LinearGradient(0,0,0,1,[
-          {offset:0, color:'rgba(76,125,255,0.45)'}, {offset:1, color:'rgba(76,125,255,0.02)'}])},
-        markLine:{silent:true, symbol:'none', lineStyle:{color:'rgba(255,255,255,0.10)', type:'dashed'},
-          label:{show:false}, data:[{type:'average'}]} }
+        areaStyle:{color:new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:'rgba(76,125,255,0.45)'},{offset:1,color:'rgba(76,125,255,0.02)'}])},
+        markLine:{silent:true, symbol:'none', lineStyle:{color:'rgba(255,255,255,0.10)', type:'dashed'}, label:{show:false}, data:[{type:'average'}]} }
     ];
-    if (hasFv) {
-      series.push({ name:'Fotovoltaico', type:'line', smooth:true, symbol:'circle', symbolSize:6, data:fvValues,
-        lineStyle:{width:3, color:'#f6c344'}, itemStyle:{color:'#f6c344', borderColor:'#7a5800', borderWidth:2},
-        areaStyle:{color: new echarts.graphic.LinearGradient(0,0,0,1,[
-          {offset:0, color:'rgba(246,195,68,0.35)'}, {offset:1, color:'rgba(246,195,68,0.02)'}])} });
-    }
-
+    if (hasFv) series.push({ name:'Fotovoltaico', type:'line', smooth:true, symbol:'circle', symbolSize:6, data:fvValues, lineStyle:{width:3, color:'#f6c344'}, itemStyle:{color:'#f6c344', borderColor:'#7a5800', borderWidth:2}, areaStyle:{color:new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:'rgba(246,195,68,0.35)'},{offset:1,color:'rgba(246,195,68,0.02)'}])} });
     chart.setOption({
       backgroundColor:'transparent', animationDuration:900,
-      legend: hasFv ? {top:4, right:12, itemGap:14, itemWidth:10, itemHeight:10,
-        textStyle:{color:COLORS.muted, fontSize:11}} : {show:false},
-      tooltip: { trigger:'axis', backgroundColor:'rgba(7,17,31,0.96)', borderWidth:0, textStyle:{color:'#fff'},
-        formatter: params => params.map(p =>
-          '<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:'+p.color+';margin-right:5px"></span>'+
-          p.seriesName+': <b>'+p.value+'</b> kWh').join('<br/>') },
+      legend: hasFv ? {top:4, right:12, itemGap:14, itemWidth:10, itemHeight:10, textStyle:{color:COLORS.muted, fontSize:11}} : {show:false},
+      tooltip:{trigger:'axis', backgroundColor:'rgba(7,17,31,0.96)', borderWidth:0, textStyle:{color:'#fff'},
+        formatter: params => params.map(p => '<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:'+p.color+';margin-right:5px"></span>'+p.seriesName+': <b>'+p.value+'</b> kWh').join('<br/>')},
       grid:{left:55, right:18, top:hasFv?32:20, bottom:38},
-      xAxis:{ type:'category', data:labels, boundaryGap:false,
-        axisLabel:{color:COLORS.muted, fontSize:13, hideOverlap:true},
-        axisLine:{lineStyle:{color:'rgba(255,255,255,0.12)'}},
-        splitLine:{show:true, lineStyle:{color:'rgba(255,255,255,0.06)', type:'dashed'}} },
-      yAxis:{ type:'value',
-        axisLabel:{color:COLORS.muted, fontSize:13, hideOverlap:true},
-        splitLine:{lineStyle:{color:COLORS.grid}} },
+      xAxis:{type:'category', data:labels, boundaryGap:false, axisLabel:{color:COLORS.muted, fontSize:13, hideOverlap:true}, axisLine:{lineStyle:{color:'rgba(255,255,255,0.12)'}}, splitLine:{show:true, lineStyle:{color:'rgba(255,255,255,0.06)', type:'dashed'}}},
+      yAxis:{type:'value', axisLabel:{color:COLORS.muted, fontSize:13, hideOverlap:true}, splitLine:{lineStyle:{color:COLORS.grid}}},
       series
     });
     return chart;
   }
 
-  /* ── Partial chart ── */
   function buildPartialChart(el, data) {
     const chart = echarts.init(document.getElementById(el));
     const labels = data?.consumo_parziale?.labels || [];
     const seriesData = data?.consumo_parziale?.series || {};
     const seriesMap = [
-      { key:'Consumo Gruppi Frigo',     color:COLORS.frigo },
-      { key:'Consumo Mensa',            color:COLORS.mensa },
-      { key:'Ricarica Auto Elettriche', color:COLORS.cyan },
-      { key:'Consumo Edificio',         color:COLORS.edificio }
+      {key:'Consumo Gruppi Frigo', color:COLORS.frigo},
+      {key:'Consumo Mensa', color:COLORS.mensa},
+      {key:'Ricarica Auto Elettriche', color:COLORS.cyan},
+      {key:'Consumo Edificio', color:COLORS.edificio}
     ];
     const series = [];
-    for (const entry of seriesMap) {
-      if (seriesData[entry.key]) {
-        series.push({ name:entry.key, type:'line', smooth:true, symbol:'circle', symbolSize:5,
-          data:seriesData[entry.key].map(v => Number(v||0)),
-          lineStyle:{width:3, color:entry.color}, itemStyle:{color:entry.color, borderWidth:2},
-          showSymbol:false, emphasis:{focus:'series'} });
-      }
+    for (const e of seriesMap) {
+      if (seriesData[e.key]) series.push({name:e.key, type:'line', smooth:true, symbol:'circle', symbolSize:5, data:seriesData[e.key].map(v=>Number(v||0)), lineStyle:{width:3, color:e.color}, itemStyle:{color:e.color, borderWidth:2}, showSymbol:false, emphasis:{focus:'series'}});
     }
     chart.setOption({
       backgroundColor:'transparent', animationDuration:900,
       tooltip:{trigger:'axis', backgroundColor:'rgba(7,17,31,0.96)', borderWidth:0, textStyle:{color:'#fff'}},
-      legend:{ bottom:4, itemGap:16, itemWidth:12, itemHeight:12,
-        textStyle:{color:COLORS.muted, fontSize:11},
-        formatter: name => ({'Consumo Gruppi Frigo':'Gruppi Frigo','Consumo Mensa':'Mensa',
-          'Ricarica Auto Elettriche':'Ricarica Auto','Consumo Edificio':'Edificio'}[name]||name) },
+      legend:{bottom:4, itemGap:16, itemWidth:12, itemHeight:12, textStyle:{color:COLORS.muted, fontSize:11},
+        formatter: name => ({'Consumo Gruppi Frigo':'Gruppi Frigo','Consumo Mensa':'Mensa','Ricarica Auto Elettriche':'Ricarica Auto','Consumo Edificio':'Edificio'}[name]||name)},
       grid:{left:55, right:18, top:16, bottom:52},
-      xAxis:{ type:'category', data:labels, boundaryGap:false,
-        axisLabel:{color:COLORS.muted, fontSize:12, hideOverlap:true},
-        axisLine:{lineStyle:{color:'rgba(255,255,255,0.12)'}},
-        splitLine:{show:true, lineStyle:{color:'rgba(255,255,255,0.04)'}} },
-      yAxis:{ type:'value', axisLabel:{color:COLORS.muted, fontSize:12},
-        splitLine:{lineStyle:{color:COLORS.grid}} },
+      xAxis:{type:'category', data:labels, boundaryGap:false, axisLabel:{color:COLORS.muted, fontSize:12, hideOverlap:true}, axisLine:{lineStyle:{color:'rgba(255,255,255,0.12)'}}, splitLine:{show:true, lineStyle:{color:'rgba(255,255,255,0.04)'}}},
+      yAxis:{type:'value', axisLabel:{color:COLORS.muted, fontSize:12}, splitLine:{lineStyle:{color:COLORS.grid}}},
       series
     });
     return chart;
   }
 
-  /* ── Init ── */
   async function init() {
     try {
-      const d = await fetchJson('./data/24h.json');
+      const d = await fetchJson('./data/7d.json');
       const ts = formatTimestamp(d.updated_at);
       document.getElementById('tUpdate').textContent = ts ? 'Ultimo aggiornamento: ' + ts : 'Dati aggiornati';
       document.getElementById('loading').style.display = 'none';
