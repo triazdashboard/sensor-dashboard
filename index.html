@@ -15,11 +15,15 @@
     /* ── Mega-card body: 2 colonne (sinistra: gauge+kpi | destra: total/partial) ── */
     .mega-body { display:flex !important; flex-direction:row; overflow:hidden; }
     .mega-left {
-      flex:0 0 26%; display:flex; flex-direction:column;
+      flex:0 0 30%; display:flex; flex-direction:column;
       border-right:1px solid rgba(255,255,255,0.07);
       min-height:0; min-width:0; overflow:hidden;
     }
-    .mega-gauge { flex:0 0 44%; position:relative; min-height:0; overflow:hidden; }
+    .mega-gauge {
+      flex:0 0 42%; position:relative; min-height:0; overflow:hidden;
+      border-bottom:1px solid rgba(255,255,255,0.07);
+      padding-bottom:6px;
+    }
     .mega-right { flex:1; display:flex; flex-direction:column; min-height:0; min-width:0; overflow:hidden; }
     .mega-right-top    { flex:1; position:relative; min-height:0; overflow:hidden; }
     .mega-hdivider     { flex-shrink:0; height:1px; background:rgba(255,255,255,0.07); }
@@ -34,16 +38,20 @@
     }
 
     /* ── KPI panel ── */
-    .ratio-kpis { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:space-evenly; padding:16px 20px; }
-    .ratio-kpi { display:flex; align-items:center; gap:16px; }
-    .ratio-kpi-icon { flex-shrink:0; width:46px; height:46px; fill:rgba(255,255,255,0.82); filter:drop-shadow(0 0 4px rgba(255,255,255,0.18)); }
-    .ratio-kpi-icon.blue   { fill:#4c7dff; filter:drop-shadow(0 0 5px rgba(76,125,255,0.5)); }
-    .ratio-kpi-icon.yellow { fill:#f6c344; filter:drop-shadow(0 0 5px rgba(246,195,68,0.5)); }
-    .ratio-kpi-icon.cyan   { fill:#45d4ff; filter:drop-shadow(0 0 5px rgba(69,212,255,0.5)); }
-    .ratio-kpi-icon.green  { fill:#33d17a; filter:drop-shadow(0 0 5px rgba(51,209,122,0.5)); }
-    .ratio-kpi-info { display:flex; flex-direction:column; gap:3px; min-width:0; }
-    .ratio-kpi-value { font-size:24px; font-weight:700; line-height:1.1; white-space:nowrap; }
-    .ratio-kpi-label { font-size:11px; font-weight:600; color:var(--muted); letter-spacing:0.06em; text-transform:uppercase; }
+    .ratio-kpis {
+      flex:1; display:grid; grid-template-columns:1fr 1fr;
+      align-content:space-evenly; justify-items:start;
+      padding:14px 18px; gap:6px 8px;
+    }
+    .ratio-kpi { display:flex; align-items:center; gap:20px; }
+    .ratio-kpi-icon { flex-shrink:0; width:51px; height:51px; fill:rgba(255,255,255,0.82); filter:drop-shadow(0 0 4px rgba(255,255,255,0.18)); }
+    .ratio-kpi-icon.blue   { fill:#4c7dff; filter:drop-shadow(0 0 6px rgba(76,125,255,0.5)); }
+    .ratio-kpi-icon.yellow { fill:#f6c344; filter:drop-shadow(0 0 6px rgba(246,195,68,0.5)); }
+    .ratio-kpi-icon.cyan   { fill:#45d4ff; filter:drop-shadow(0 0 6px rgba(69,212,255,0.5)); }
+    .ratio-kpi-icon.green  { fill:#33d17a; filter:drop-shadow(0 0 6px rgba(51,209,122,0.5)); }
+    .ratio-kpi-info { display:flex; flex-direction:column; gap:4px; min-width:0; }
+    .ratio-kpi-value { font-size:26px; font-weight:700; line-height:1.1; white-space:nowrap; }
+    .ratio-kpi-label { font-size:12px; font-weight:600; color:var(--muted); letter-spacing:0.06em; text-transform:uppercase; }
   </style>
 </head>
 <body>
