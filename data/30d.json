@@ -1,76 +1,154 @@
 {
-  "updated_at": "2026-04-24 18:01",
+  "updated_at": "2026-04-24 22:52",
   "totale_vs_fv": {
-    "consumo": 29109,
-    "fotovoltaico": 9890
+    "consumo": 39024,
+    "fotovoltaico": 12263
   },
   "consumo_totale": [
     {
-      "label": "W1",
+      "label": "25-27 mar",
       "value": 0
     },
     {
-      "label": "W2",
-      "value": 9303
+      "label": "28-30 mar",
+      "value": 4092
     },
     {
-      "label": "W3",
-      "value": 9858
+      "label": "31 mar-2 apr",
+      "value": 5823
     },
     {
-      "label": "W4",
-      "value": 9948
+      "label": "3-5 apr",
+      "value": 3183
+    },
+    {
+      "label": "6-8 apr",
+      "value": 4425
+    },
+    {
+      "label": "9-11 apr",
+      "value": 4164
+    },
+    {
+      "label": "12-14 apr",
+      "value": 4131
+    },
+    {
+      "label": "15-17 apr",
+      "value": 5022
+    },
+    {
+      "label": "18-20 apr",
+      "value": 3384
+    },
+    {
+      "label": "21-23 apr",
+      "value": 4800
     }
   ],
   "fotovoltaico_totale": [
     {
-      "label": "W1",
+      "label": "25-27 mar",
       "value": 0
     },
     {
-      "label": "W2",
-      "value": 3073
+      "label": "28-30 mar",
+      "value": 1521
     },
     {
-      "label": "W3",
-      "value": 2971
+      "label": "31 mar-2 apr",
+      "value": 852
     },
     {
-      "label": "W4",
-      "value": 3846
+      "label": "3-5 apr",
+      "value": 1205
+    },
+    {
+      "label": "6-8 apr",
+      "value": 1269
+    },
+    {
+      "label": "9-11 apr",
+      "value": 1768
+    },
+    {
+      "label": "12-14 apr",
+      "value": 846
+    },
+    {
+      "label": "15-17 apr",
+      "value": 1568
+    },
+    {
+      "label": "18-20 apr",
+      "value": 1771
+    },
+    {
+      "label": "21-23 apr",
+      "value": 1463
     }
   ],
   "consumo_parziale": {
     "labels": [
-      "W1",
-      "W2",
-      "W3",
-      "W4"
+      "25-27 mar",
+      "28-30 mar",
+      "31 mar-2 apr",
+      "3-5 apr",
+      "6-8 apr",
+      "9-11 apr",
+      "12-14 apr",
+      "15-17 apr",
+      "18-20 apr",
+      "21-23 apr"
     ],
     "series": {
       "Consumo Gruppi Frigo": [
         0,
-        2598,
-        1830,
-        2311
+        1203,
+        1931,
+        955,
+        1278,
+        857,
+        744,
+        1125,
+        716,
+        1064
       ],
       "Consumo Mensa": [
         0,
-        831,
-        1318,
-        1065
+        322,
+        674,
+        128,
+        485,
+        494,
+        553,
+        652,
+        272,
+        630
       ],
       "Ricarica Auto Elettriche": [
         0,
-        117,
-        217,
-        164
+        42,
+        95,
+        0,
+        60,
+        100,
+        121,
+        108,
+        17,
+        92
       ],
       "Consumo Edificio": [
         0,
-        5757,
-        6493,
-        6408
+        2525,
+        3123,
+        2100,
+        2602,
+        2713,
+        2713,
+        3137,
+        2379,
+        3014
       ]
     }
   }
