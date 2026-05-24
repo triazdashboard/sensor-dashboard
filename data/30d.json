@@ -1,14 +1,10 @@
 {
-  "updated_at": "2026-05-21 03:00",
+  "updated_at": "2026-05-24 03:01",
   "totale_vs_fv": {
-    "consumo": 42168,
-    "fotovoltaico": 15025
+    "consumo": 41640,
+    "fotovoltaico": 15591
   },
   "consumo_totale": [
-    {
-      "label": "21-23 apr",
-      "value": 4800
-    },
     {
       "label": "24-26 apr",
       "value": 3084
@@ -44,13 +40,13 @@
     {
       "label": "18-20 mag",
       "value": 4755
+    },
+    {
+      "label": "21-23 mag",
+      "value": 4272
     }
   ],
   "fotovoltaico_totale": [
-    {
-      "label": "21-23 apr",
-      "value": 1463
-    },
     {
       "label": "24-26 apr",
       "value": 1971
@@ -86,11 +82,14 @@
     {
       "label": "18-20 mag",
       "value": 1843
+    },
+    {
+      "label": "21-23 mag",
+      "value": 2029
     }
   ],
   "consumo_parziale": {
     "labels": [
-      "21-23 apr",
       "24-26 apr",
       "27-29 apr",
       "30 apr-2 mag",
@@ -99,11 +98,11 @@
       "9-11 mag",
       "12-14 mag",
       "15-17 mag",
-      "18-20 mag"
+      "18-20 mag",
+      "21-23 mag"
     ],
     "series": {
       "Consumo Gruppi Frigo": [
-        1064,
         489,
         1230,
         879,
@@ -112,10 +111,10 @@
         1160,
         1196,
         467,
-        1094
+        1094,
+        1133
       ],
       "Consumo Mensa": [
-        630,
         266,
         577,
         281,
@@ -124,10 +123,10 @@
         302,
         690,
         302,
-        612
+        612,
+        452
       ],
       "Ricarica Auto Elettriche": [
-        92,
         41,
         130,
         58,
@@ -136,10 +135,10 @@
         15,
         130,
         45,
-        97
+        97,
+        103
       ],
       "Consumo Edificio": [
-        3014,
         2288,
         2965,
         2370,
@@ -148,7 +147,8 @@
         2369,
         3066,
         2324,
-        2952
+        2952,
+        2584
       ]
     }
   }
