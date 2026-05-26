@@ -1,154 +1,154 @@
 {
-  "updated_at": "2026-05-24 03:01",
+  "updated_at": "2026-05-26 03:01",
   "totale_vs_fv": {
-    "consumo": 41640,
-    "fotovoltaico": 15591
+    "consumo": 42240,
+    "fotovoltaico": 15655
   },
   "consumo_totale": [
     {
-      "label": "24-26 apr",
-      "value": 3084
+      "label": "26-28 apr",
+      "value": 4065
     },
     {
-      "label": "27-29 apr",
-      "value": 4902
+      "label": "29 apr-1 mag",
+      "value": 4404
     },
     {
-      "label": "30 apr-2 mag",
-      "value": 3588
+      "label": "2-4 mag",
+      "value": 3375
     },
     {
-      "label": "3-5 mag",
-      "value": 4146
+      "label": "5-7 mag",
+      "value": 4845
     },
     {
-      "label": "6-8 mag",
-      "value": 4827
+      "label": "8-10 mag",
+      "value": 3744
     },
     {
-      "label": "9-11 mag",
-      "value": 3846
+      "label": "11-13 mag",
+      "value": 5079
     },
     {
-      "label": "12-14 mag",
-      "value": 5082
+      "label": "14-16 mag",
+      "value": 4065
     },
     {
-      "label": "15-17 mag",
-      "value": 3138
+      "label": "17-19 mag",
+      "value": 3918
     },
     {
-      "label": "18-20 mag",
-      "value": 4755
+      "label": "20-22 mag",
+      "value": 5193
     },
     {
-      "label": "21-23 mag",
-      "value": 4272
+      "label": "23-25 mag",
+      "value": 3552
     }
   ],
   "fotovoltaico_totale": [
     {
-      "label": "24-26 apr",
-      "value": 1971
+      "label": "26-28 apr",
+      "value": 1959
     },
     {
-      "label": "27-29 apr",
-      "value": 1931
+      "label": "29 apr-1 mag",
+      "value": 1221
     },
     {
-      "label": "30 apr-2 mag",
-      "value": 1260
+      "label": "2-4 mag",
+      "value": 1754
     },
     {
-      "label": "3-5 mag",
-      "value": 1285
+      "label": "5-7 mag",
+      "value": 1129
     },
     {
-      "label": "6-8 mag",
-      "value": 1258
+      "label": "8-10 mag",
+      "value": 1099
     },
     {
-      "label": "9-11 mag",
-      "value": 1337
+      "label": "11-13 mag",
+      "value": 1325
     },
     {
-      "label": "12-14 mag",
-      "value": 1268
+      "label": "14-16 mag",
+      "value": 1273
     },
     {
-      "label": "15-17 mag",
-      "value": 1409
+      "label": "17-19 mag",
+      "value": 1866
     },
     {
-      "label": "18-20 mag",
-      "value": 1843
+      "label": "20-22 mag",
+      "value": 1984
     },
     {
-      "label": "21-23 mag",
-      "value": 2029
+      "label": "23-25 mag",
+      "value": 2045
     }
   ],
   "consumo_parziale": {
     "labels": [
-      "24-26 apr",
-      "27-29 apr",
-      "30 apr-2 mag",
-      "3-5 mag",
-      "6-8 mag",
-      "9-11 mag",
-      "12-14 mag",
-      "15-17 mag",
-      "18-20 mag",
-      "21-23 mag"
+      "26-28 apr",
+      "29 apr-1 mag",
+      "2-4 mag",
+      "5-7 mag",
+      "8-10 mag",
+      "11-13 mag",
+      "14-16 mag",
+      "17-19 mag",
+      "20-22 mag",
+      "23-25 mag"
     ],
     "series": {
       "Consumo Gruppi Frigo": [
-        489,
-        1230,
-        879,
-        823,
-        1102,
-        1160,
-        1196,
-        467,
-        1094,
-        1133
+        895,
+        1184,
+        618,
+        1041,
+        1072,
+        1298,
+        773,
+        779,
+        1478,
+        898
       ],
       "Consumo Mensa": [
-        266,
-        577,
-        281,
-        459,
-        587,
-        302,
-        690,
-        302,
-        612,
-        452
+        429,
+        434,
+        288,
+        630,
+        255,
+        679,
+        482,
+        468,
+        598,
+        298
       ],
       "Ricarica Auto Elettriche": [
-        41,
-        130,
-        58,
-        152,
-        121,
-        15,
-        130,
-        45,
-        97,
-        103
+        70,
+        117,
+        95,
+        100,
+        79,
+        102,
+        88,
+        59,
+        140,
+        58
       ],
       "Consumo Edificio": [
-        2288,
-        2965,
-        2370,
-        2712,
-        3017,
-        2369,
-        3066,
-        2324,
-        2952,
-        2584
+        2671,
+        2669,
+        2374,
+        3074,
+        2338,
+        3000,
+        2722,
+        2612,
+        2977,
+        2298
       ]
     }
   }
