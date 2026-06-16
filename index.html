@@ -55,6 +55,37 @@
     .ratio-kpi-info { display:flex; flex-direction:column; gap:3px; min-width:0; align-items:center; }
     .ratio-kpi-value { font-size:27px; font-weight:700; line-height:1.1; white-space:nowrap; }
     .ratio-kpi-label { font-size:13px; font-weight:600; color:var(--muted); letter-spacing:0.06em; text-transform:uppercase; }
+
+    .history-picker {
+      position:absolute; left:50%; top:50%; transform:translate(-50%, -50%);
+      z-index:2; display:flex; align-items:center; gap:8px;
+    }
+    .history-picker label {
+      font-size:12px; font-weight:700; color:var(--muted);
+      letter-spacing:0.06em; text-transform:uppercase; white-space:nowrap;
+    }
+    .history-select {
+      min-width:170px; height:30px; padding:0 34px 0 12px;
+      border-radius:7px; border:1px solid var(--panel-border-2);
+      background:rgba(255,255,255,0.05); color:var(--text);
+      font:700 14px/1 Inter, "Segoe UI", Arial, sans-serif;
+      outline:none; appearance:none;
+      background-image:
+        linear-gradient(45deg, transparent 50%, var(--muted) 50%),
+        linear-gradient(135deg, var(--muted) 50%, transparent 50%);
+      background-position:
+        calc(100% - 17px) 12px,
+        calc(100% - 11px) 12px;
+      background-size:6px 6px, 6px 6px;
+      background-repeat:no-repeat;
+    }
+    .history-select:hover, .history-select:focus {
+      border-color:rgba(255,255,255,0.25);
+      background-color:rgba(255,255,255,0.08);
+    }
+    .history-select option {
+      background:#0b182b; color:#f4f8ff;
+    }
   </style>
 </head>
 <body>
@@ -175,6 +206,12 @@ c-13.232,0-24-10.768-24-24s10.768-24,24-24h24V64z"/>
 
 <footer class="t-footer">
   <div class="t-update" id="tUpdate">—</div>
+  <div class="history-picker">
+    <label for="historySelect">Giorno</label>
+    <select class="history-select" id="historySelect" aria-label="Seleziona giorno da visualizzare">
+      <option value="./data/24h.json">Ultimo aggiornamento</option>
+    </select>
+  </div>
   <div class="t-nav">
     <a href="https://triazdashboard.github.io/sensor-dashboard/7d.html">7D</a>
     <a href="https://triazdashboard.github.io/sensor-dashboard/30d.html">30D</a>
@@ -225,6 +262,17 @@ c-13.232,0-24-10.768-24-24s10.768-24,24-24h24V64z"/>
     entries.forEach(function(e) { const c = chartByEl.get(e.target); if (c) c.resize(); });
   });
   function reg(el, chart) { chartByEl.set(el, chart); resizeObserver.observe(el); return chart; }
+
+  function disposeCharts() {
+    ['chart-ratio', 'chart-total', 'chart-partial'].forEach(function(id) {
+      const el = document.getElementById(id);
+      const chart = el ? chartByEl.get(el) : null;
+      if (chart) {
+        chart.dispose();
+        chartByEl.delete(el);
+      }
+    });
+  }
 
   /* ── Ratio / Gauge ── */
   function buildRatioChart(el, kpisId, data) {
@@ -378,24 +426,80 @@ c-13.232,0-24-10.768-24-24s10.768-24,24-24h24V64z"/>
     return chart;
   }
 
-  /* ── Init ── */
-  async function init() {
+  const HISTORY_24H_DATES = [
+    '2026-05-16',
+    '2026-05-17',
+    '2026-05-18',
+    '2026-05-19',
+    '2026-05-20',
+    '2026-05-23',
+    '2026-05-25',
+    '2026-05-26',
+    '2026-05-27',
+    '2026-05-28',
+    '2026-05-29',
+    '2026-05-30',
+    '2026-05-31',
+    '2026-06-01',
+    '2026-06-02',
+    '2026-06-04',
+    '2026-06-05',
+    '2026-06-06',
+    '2026-06-07',
+    '2026-06-08',
+    '2026-06-10',
+    '2026-06-11',
+    '2026-06-13',
+    '2026-06-14',
+    '2026-06-15'
+  ];
+
+  function formatDateLabel(dateText) {
+    const d = new Date(dateText + 'T00:00:00');
+    if (isNaN(d.getTime())) return dateText;
+    return d.toLocaleDateString('it-IT', { weekday:'short', day:'2-digit', month:'2-digit', year:'numeric' });
+  }
+
+  function populateHistorySelect() {
+    const select = document.getElementById('historySelect');
+    HISTORY_24H_DATES.slice().reverse().forEach(function(dateText) {
+      const option = document.createElement('option');
+      option.value = './data/history/24h/' + dateText + '_24h_data.json';
+      option.textContent = formatDateLabel(dateText);
+      select.appendChild(option);
+    });
+    select.addEventListener('change', function() {
+      loadDashboard(select.value);
+    });
+  }
+
+  async function loadDashboard(path) {
     try {
-      const d = await fetchJson('./data/24h.json');
+      document.getElementById('loading').textContent = 'Caricamento dashboard...';
+      document.getElementById('loading').style.display = '';
+      document.getElementById('mainCard').style.display = 'none';
+      const d = await fetchJson(path);
       const ts = formatTimestamp(d.updated_at);
       document.getElementById('tUpdate').textContent = ts ? 'Ultimo aggiornamento: ' + ts : 'Dati aggiornati';
       document.getElementById('loading').style.display = 'none';
       document.getElementById('mainCard').style.display = '';
       requestAnimationFrame(function() {
+        disposeCharts();
         reg(document.getElementById('chart-ratio'),   buildRatioChart('chart-ratio', 'kpis-ratio', d));
         reg(document.getElementById('chart-total'),   buildTotalChart('chart-total', d));
         reg(document.getElementById('chart-partial'), buildPartialChart('chart-partial', d));
       });
-      setTimeout(function() { location.reload(); }, 3600000);
     } catch(err) {
       document.getElementById('loading').textContent = 'Errore: ' + err.message;
       console.error(err);
     }
+  }
+
+  /* ── Init ── */
+  function init() {
+    populateHistorySelect();
+    loadDashboard('./data/24h.json');
+    setTimeout(function() { location.reload(); }, 3600000);
   }
 
   init();
