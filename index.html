@@ -426,48 +426,27 @@ c-13.232,0-24-10.768-24-24s10.768-24,24-24h24V64z"/>
     return chart;
   }
 
-  const HISTORY_24H_DATES = [
-    '2026-05-16',
-    '2026-05-17',
-    '2026-05-18',
-    '2026-05-19',
-    '2026-05-20',
-    '2026-05-23',
-    '2026-05-25',
-    '2026-05-26',
-    '2026-05-27',
-    '2026-05-28',
-    '2026-05-29',
-    '2026-05-30',
-    '2026-05-31',
-    '2026-06-01',
-    '2026-06-02',
-    '2026-06-04',
-    '2026-06-05',
-    '2026-06-06',
-    '2026-06-07',
-    '2026-06-08',
-    '2026-06-10',
-    '2026-06-11',
-    '2026-06-13',
-    '2026-06-14',
-    '2026-06-15'
-  ];
-
   function formatDateLabel(dateText) {
     const d = new Date(dateText + 'T00:00:00');
     if (isNaN(d.getTime())) return dateText;
     return d.toLocaleDateString('it-IT', { weekday:'short', day:'2-digit', month:'2-digit', year:'numeric' });
   }
 
-  function populateHistorySelect() {
+  async function populateHistorySelect() {
     const select = document.getElementById('historySelect');
-    HISTORY_24H_DATES.slice().reverse().forEach(function(dateText) {
-      const option = document.createElement('option');
-      option.value = './data/history/24h/' + dateText + '_24h_data.json';
-      option.textContent = formatDateLabel(dateText);
-      select.appendChild(option);
-    });
+    try {
+      const dates = await fetchJson('./data/history/24h/daylist.json');
+      if (!Array.isArray(dates)) throw new Error('Formato daylist non valido');
+      dates.slice().reverse().forEach(function(dateText) {
+        const option = document.createElement('option');
+        option.value = './data/history/24h/' + dateText + '_24h_data.json';
+        option.textContent = formatDateLabel(dateText);
+        select.appendChild(option);
+      });
+    } catch(err) {
+      select.title = 'Elenco storico non disponibile';
+      console.error(err);
+    }
     select.addEventListener('change', function() {
       loadDashboard(select.value);
     });
