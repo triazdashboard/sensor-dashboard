@@ -1,44 +1,40 @@
 {
-  "updated_at": "2026-06-15 16:53",
+  "updated_at": "2026-06-16 03:00",
   "totale_vs_fv": {
-    "consumo": 11952,
-    "fotovoltaico": 3874
+    "consumo": 12573,
+    "fotovoltaico": 4553
   },
   "consumo_totale": [
-    {
-      "label": "Lun",
-      "value": 2400
-    },
     {
       "label": "Mar",
       "value": 2253
     },
     {
       "label": "Mer",
-      "value": 2316
+      "value": 2319
     },
     {
       "label": "Gio",
-      "value": 2079
-    },
-    {
-      "label": "Ven",
       "value": 2085
     },
     {
+      "label": "Ven",
+      "value": 2073
+    },
+    {
       "label": "Sab",
-      "value": 819
+      "value": 822
     },
     {
       "label": "Dom",
-      "value": 0
+      "value": 828
+    },
+    {
+      "label": "Lun",
+      "value": 2193
     }
   ],
   "fotovoltaico_totale": [
-    {
-      "label": "Lun",
-      "value": 683
-    },
     {
       "label": "Mar",
       "value": 694
@@ -61,55 +57,59 @@
     },
     {
       "label": "Dom",
-      "value": 0
+      "value": 690
+    },
+    {
+      "label": "Lun",
+      "value": 672
     }
   ],
   "consumo_parziale": {
     "labels": [
-      "Lun",
       "Mar",
       "Mer",
       "Gio",
       "Ven",
       "Sab",
-      "Dom"
+      "Dom",
+      "Lun"
     ],
     "series": {
       "Consumo Gruppi Frigo": [
-        1063,
-        945,
-        929,
-        743,
+        944,
+        930,
+        742,
         757,
         32,
-        0
+        32,
+        981
       ],
       "Consumo Mensa": [
-        193,
         205,
-        207,
-        212,
-        177,
+        206,
+        213,
+        175,
         42,
-        0
+        43,
+        184
       ],
       "Ricarica Auto Elettriche": [
-        48,
         38,
         51,
-        10,
-        102,
+        11,
+        101,
         2,
-        0
+        1,
+        62
       ],
       "Consumo Edificio": [
-        1096,
-        1065,
-        1129,
-        1114,
-        1049,
-        743,
-        0
+        1066,
+        1132,
+        1119,
+        1040,
+        746,
+        752,
+        966
       ]
     }
   }
