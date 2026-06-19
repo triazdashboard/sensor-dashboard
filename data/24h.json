@@ -1,10 +1,10 @@
 {
-  "updated_at": "2026-06-18 03:00",
+  "updated_at": "2026-06-19 03:00",
   "period": "24h",
-  "source_latest_ts": "2026-06-17 21:00",
+  "source_latest_ts": "2026-06-18 21:00",
   "totale_vs_fv": {
-    "consumo": 2397,
-    "fotovoltaico": 631
+    "consumo": 2463,
+    "fotovoltaico": 688
   },
   "consumo_totale": [
     {
@@ -13,67 +13,67 @@
     },
     {
       "label": "01",
-      "value": 42
+      "value": 36
     },
     {
       "label": "02",
-      "value": 36
+      "value": 39
     },
     {
       "label": "03",
-      "value": 36
+      "value": 39
     },
     {
       "label": "04",
-      "value": 42
+      "value": 48
     },
     {
       "label": "05",
-      "value": 135
+      "value": 144
     },
     {
       "label": "06",
-      "value": 150
+      "value": 165
     },
     {
       "label": "07",
-      "value": 168
+      "value": 180
     },
     {
       "label": "08",
-      "value": 180
+      "value": 195
     },
     {
       "label": "09",
-      "value": 180
+      "value": 186
     },
     {
       "label": "10",
-      "value": 189
+      "value": 180
     },
     {
       "label": "11",
-      "value": 186
+      "value": 174
     },
     {
       "label": "12",
-      "value": 183
+      "value": 165
     },
     {
       "label": "13",
-      "value": 186
+      "value": 177
     },
     {
       "label": "14",
-      "value": 183
+      "value": 177
     },
     {
       "label": "15",
-      "value": 153
+      "value": 171
     },
     {
       "label": "16",
-      "value": 120
+      "value": 156
     },
     {
       "label": "17",
@@ -85,11 +85,11 @@
     },
     {
       "label": "19",
-      "value": 48
+      "value": 45
     },
     {
       "label": "20",
-      "value": 42
+      "value": 48
     },
     {
       "label": "21",
@@ -119,67 +119,67 @@
     },
     {
       "label": "03",
-      "value": 0
+      "value": 1
     },
     {
       "label": "04",
-      "value": 3
+      "value": 2
     },
     {
       "label": "05",
-      "value": 13
+      "value": 14
     },
     {
       "label": "06",
-      "value": 33
+      "value": 35
     },
     {
       "label": "07",
-      "value": 52
+      "value": 54
     },
     {
       "label": "08",
-      "value": 66
+      "value": 68
     },
     {
       "label": "09",
-      "value": 75
+      "value": 77
     },
     {
       "label": "10",
-      "value": 82
+      "value": 83
     },
     {
       "label": "11",
-      "value": 67
+      "value": 84
     },
     {
       "label": "12",
-      "value": 72
+      "value": 78
     },
     {
       "label": "13",
-      "value": 67
+      "value": 70
     },
     {
       "label": "14",
-      "value": 59
+      "value": 57
     },
     {
       "label": "15",
-      "value": 18
+      "value": 38
     },
     {
       "label": "16",
-      "value": 9
+      "value": 17
     },
     {
       "label": "17",
-      "value": 13
+      "value": 9
     },
     {
       "label": "18",
-      "value": 2
+      "value": 1
     },
     {
       "label": "19",
@@ -231,50 +231,50 @@
     ],
     "series": {
       "Consumo Gruppi Frigo": [
-        1,
-        1,
         2,
         1,
         1,
-        74,
-        76,
-        78,
-        83,
-        90,
-        103,
+        1,
+        1,
+        80,
+        79,
+        79,
+        85,
+        94,
+        99,
         101,
+        100,
+        109,
+        113,
+        108,
         106,
-        112,
-        114,
-        95,
-        70,
         8,
         1,
         1,
-        1,
+        2,
         0,
         0,
         0
       ],
       "Consumo Mensa": [
-        2,
+        3,
         3,
         2,
-        3,
-        4,
-        20,
-        18,
-        19,
+        2,
+        9,
+        21,
+        22,
+        23,
+        25,
         24,
-        19,
-        19,
-        19,
-        10,
+        23,
+        17,
         8,
-        6,
-        4,
-        4,
-        2,
+        10,
+        9,
+        10,
+        3,
+        3,
         2,
         3,
         2,
@@ -283,53 +283,53 @@
         0
       ],
       "Ricarica Auto Elettriche": [
-        0,
         1,
         0,
         0,
         0,
         0,
         0,
-        5,
-        8,
-        8,
-        5,
-        5,
-        5,
-        4,
-        4,
-        5,
+        10,
+        13,
+        14,
+        2,
         0,
         0,
         0,
         0,
         0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
         0,
         0,
         0
       ],
       "Consumo Edificio": [
+        33,
+        32,
         36,
-        37,
-        32,
-        32,
-        37,
-        41,
-        56,
-        66,
+        36,
+        38,
+        43,
+        54,
         65,
-        63,
-        62,
-        61,
-        62,
-        62,
-        59,
-        49,
-        46,
-        44,
+        71,
+        66,
+        58,
+        56,
+        57,
+        58,
+        55,
+        53,
+        47,
+        43,
         42,
-        44,
-        39,
+        41,
+        43,
         0,
         0,
         0
