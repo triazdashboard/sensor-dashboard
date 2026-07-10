@@ -1,24 +1,12 @@
 {
-  "updated_at": "2026-07-08 03:00",
+  "updated_at": "2026-07-10 03:00",
   "period": "7d",
-  "source_latest_ts": "2026-07-05 21:00",
+  "source_latest_ts": "2026-07-08 21:00",
   "totale_vs_fv": {
-    "consumo": 15729,
-    "fotovoltaico": 4367
+    "consumo": 15765,
+    "fotovoltaico": 4547
   },
   "consumo_totale": [
-    {
-      "label": "Lun",
-      "value": 2376
-    },
-    {
-      "label": "Mar",
-      "value": 2796
-    },
-    {
-      "label": "Mer",
-      "value": 2793
-    },
     {
       "label": "Gio",
       "value": 2415
@@ -29,26 +17,26 @@
     },
     {
       "label": "Sab",
-      "value": 1440
+      "value": 1404
     },
     {
       "label": "Dom",
-      "value": 1410
-    }
-  ],
-  "fotovoltaico_totale": [
+      "value": 1548
+    },
     {
       "label": "Lun",
-      "value": 522
+      "value": 2688
     },
     {
       "label": "Mar",
-      "value": 610
+      "value": 2718
     },
     {
       "label": "Mer",
-      "value": 685
-    },
+      "value": 2493
+    }
+  ],
+  "fotovoltaico_totale": [
     {
       "label": "Gio",
       "value": 451
@@ -64,54 +52,66 @@
     {
       "label": "Dom",
       "value": 712
+    },
+    {
+      "label": "Lun",
+      "value": 657
+    },
+    {
+      "label": "Mar",
+      "value": 673
+    },
+    {
+      "label": "Mer",
+      "value": 667
     }
   ],
   "consumo_parziale": {
     "labels": [
-      "Lun",
-      "Mar",
-      "Mer",
       "Gio",
       "Ven",
       "Sab",
-      "Dom"
+      "Dom",
+      "Lun",
+      "Mar",
+      "Mer"
     ],
     "series": {
       "Consumo Gruppi Frigo": [
-        1491,
-        1396,
-        1435,
         1071,
         1209,
-        596,
-        700
+        595,
+        738,
+        1333,
+        1303,
+        1293
       ],
       "Consumo Mensa": [
-        64,
-        202,
-        209,
         195,
         162,
-        51,
-        42
+        48,
+        48,
+        195,
+        191,
+        187
       ],
       "Ricarica Auto Elettriche": [
-        2,
-        110,
-        46,
         30,
         69,
         2,
-        1
+        1,
+        46,
+        75,
+        32
       ],
       "Consumo Edificio": [
-        819,
-        1088,
-        1103,
         1119,
         1059,
-        791,
-        667
+        759,
+        761,
+        1114,
+        1149,
+        981
       ]
     }
   }
