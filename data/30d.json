@@ -1,16 +1,12 @@
 {
-  "updated_at": "2026-07-08 03:00",
+  "updated_at": "2026-07-10 03:00",
   "period": "30d",
-  "source_latest_ts": "2026-07-05 21:00",
+  "source_latest_ts": "2026-07-08 21:00",
   "totale_vs_fv": {
-    "consumo": 62025,
-    "fotovoltaico": 19319
+    "consumo": 65934,
+    "fotovoltaico": 19304
   },
   "consumo_totale": [
-    {
-      "label": "6-8 giu",
-      "value": 4092
-    },
     {
       "label": "9-11 giu",
       "value": 6648
@@ -45,14 +41,14 @@
     },
     {
       "label": "3-5 lug",
-      "value": 5349
+      "value": 5451
+    },
+    {
+      "label": "6-8 lug",
+      "value": 7899
     }
   ],
   "fotovoltaico_totale": [
-    {
-      "label": "6-8 giu",
-      "value": 2012
-    },
     {
       "label": "9-11 giu",
       "value": 1799
@@ -88,11 +84,14 @@
     {
       "label": "3-5 lug",
       "value": 2099
+    },
+    {
+      "label": "6-8 lug",
+      "value": 1997
     }
   ],
   "consumo_parziale": {
     "labels": [
-      "6-8 giu",
       "9-11 giu",
       "12-14 giu",
       "15-17 giu",
@@ -101,11 +100,11 @@
       "24-26 giu",
       "27-29 giu",
       "30 giu-2 lug",
-      "3-5 lug"
+      "3-5 lug",
+      "6-8 lug"
     ],
     "series": {
       "Consumo Gruppi Frigo": [
-        1127,
         2617,
         820,
         3195,
@@ -114,10 +113,10 @@
         3956,
         3002,
         3902,
-        2505
+        2542,
+        3929
       ],
       "Consumo Mensa": [
-        305,
         624,
         261,
         597,
@@ -126,10 +125,10 @@
         581,
         172,
         606,
-        255
+        258,
+        573
       ],
       "Ricarica Auto Elettriche": [
-        51,
         99,
         105,
         178,
@@ -138,10 +137,10 @@
         107,
         4,
         186,
-        72
+        72,
+        153
       ],
       "Consumo Edificio": [
-        2609,
         3308,
         2549,
         3326,
@@ -150,7 +149,8 @@
         3237,
         2345,
         3310,
-        2517
+        2579,
+        3244
       ]
     }
   }
