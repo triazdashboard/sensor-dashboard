@@ -1,80 +1,80 @@
 {
-  "updated_at": "2026-10-04 03:01",
+  "updated_at": "2026-10-12 03:01",
   "period": "7d",
-  "source_latest_ts": "2026-10-03 13:00",
+  "source_latest_ts": "2026-10-11 13:00",
   "totale_vs_fv": {
     "consumo": 12642,
     "fotovoltaico": 3003
   },
   "consumo_totale": [
     {
-      "label": "Dom",
+      "label": "Lun",
       "value": 798
     },
     {
-      "label": "Lun",
+      "label": "Mar",
       "value": 1899
     },
     {
-      "label": "Mar",
+      "label": "Mer",
       "value": 2226
     },
     {
-      "label": "Mer",
+      "label": "Gio",
       "value": 2397
     },
     {
-      "label": "Gio",
+      "label": "Ven",
       "value": 2298
     },
     {
-      "label": "Ven",
+      "label": "Sab",
       "value": 2268
     },
     {
-      "label": "Sab",
+      "label": "Dom",
       "value": 756
     }
   ],
   "fotovoltaico_totale": [
     {
-      "label": "Dom",
+      "label": "Lun",
       "value": 479
     },
     {
-      "label": "Lun",
+      "label": "Mar",
       "value": 485
     },
     {
-      "label": "Mar",
+      "label": "Mer",
       "value": 462
     },
     {
-      "label": "Mer",
+      "label": "Gio",
       "value": 436
     },
     {
-      "label": "Gio",
+      "label": "Ven",
       "value": 445
     },
     {
-      "label": "Ven",
+      "label": "Sab",
       "value": 381
     },
     {
-      "label": "Sab",
+      "label": "Dom",
       "value": 315
     }
   ],
   "consumo_parziale": {
     "labels": [
-      "Dom",
       "Lun",
       "Mar",
       "Mer",
       "Gio",
       "Ven",
-      "Sab"
+      "Sab",
+      "Dom"
     ],
     "series": {
       "Consumo Gruppi Frigo": [
