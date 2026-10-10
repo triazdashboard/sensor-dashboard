@@ -3,7 +3,7 @@
   "period": "24h",
   "source_latest_ts": "2026-08-17 21:00",
   "totale_vs_fv": {
-    "consumo": 2682,
+    "consumo": 2976,
     "fotovoltaico": 484
   },
   "consumo_totale": [
@@ -17,7 +17,7 @@
     },
     {
       "label": "02",
-      "value": 93
+      "value": 96
     },
     {
       "label": "03",
@@ -25,83 +25,83 @@
     },
     {
       "label": "04",
-      "value": 99
+      "value": 93
     },
     {
       "label": "05",
-      "value": 102
+      "value": 96
     },
     {
       "label": "06",
-      "value": 108
+      "value": 99
     },
     {
       "label": "07",
-      "value": 123
-    },
-    {
-      "label": "08",
-      "value": 141
-    },
-    {
-      "label": "09",
-      "value": 156
-    },
-    {
-      "label": "10",
-      "value": 159
-    },
-    {
-      "label": "11",
-      "value": 159
-    },
-    {
-      "label": "12",
-      "value": 162
-    },
-    {
-      "label": "13",
-      "value": 153
-    },
-    {
-      "label": "14",
-      "value": 150
-    },
-    {
-      "label": "15",
-      "value": 150
-    },
-    {
-      "label": "16",
-      "value": 147
-    },
-    {
-      "label": "17",
-      "value": 144
-    },
-    {
-      "label": "18",
-      "value": 135
-    },
-    {
-      "label": "19",
-      "value": 111
-    },
-    {
-      "label": "20",
       "value": 102
     },
     {
+      "label": "08",
+      "value": 108
+    },
+    {
+      "label": "09",
+      "value": 123
+    },
+    {
+      "label": "10",
+      "value": 141
+    },
+    {
+      "label": "11",
+      "value": 156
+    },
+    {
+      "label": "12",
+      "value": 159
+    },
+    {
+      "label": "13",
+      "value": 159
+    },
+    {
+      "label": "14",
+      "value": 162
+    },
+    {
+      "label": "15",
+      "value": 153
+    },
+    {
+      "label": "16",
+      "value": 150
+    },
+    {
+      "label": "17",
+      "value": 150
+    },
+    {
+      "label": "18",
+      "value": 147
+    },
+    {
+      "label": "19",
+      "value": 144
+    },
+    {
+      "label": "20",
+      "value": 135
+    },
+    {
       "label": "21",
-      "value": 0
+      "value": 111
     },
     {
       "label": "22",
-      "value": 0
+      "value": 102
     },
     {
       "label": "23",
-      "value": 0
+      "value": 102
     }
   ],
   "fotovoltaico_totale": [
@@ -127,63 +127,63 @@
     },
     {
       "label": "05",
-      "value": 6
+      "value": 0
     },
     {
       "label": "06",
-      "value": 20
+      "value": 0
     },
     {
       "label": "07",
-      "value": 38
+      "value": 6
     },
     {
       "label": "08",
-      "value": 59
+      "value": 20
     },
     {
       "label": "09",
-      "value": 53
+      "value": 38
     },
     {
       "label": "10",
-      "value": 79
+      "value": 59
     },
     {
       "label": "11",
-      "value": 75
+      "value": 53
     },
     {
       "label": "12",
-      "value": 61
+      "value": 79
     },
     {
       "label": "13",
-      "value": 27
+      "value": 75
     },
     {
       "label": "14",
-      "value": 31
+      "value": 61
     },
     {
       "label": "15",
-      "value": 18
+      "value": 27
     },
     {
       "label": "16",
-      "value": 12
+      "value": 31
     },
     {
       "label": "17",
-      "value": 5
+      "value": 18
     },
     {
       "label": "18",
-      "value": 0
+      "value": 12
     },
     {
       "label": "19",
-      "value": 0
+      "value": 5
     },
     {
       "label": "20",
@@ -232,6 +232,8 @@
     "series": {
       "Consumo Gruppi Frigo": [
         59,
+        59,
+        59,
         73,
         44,
         57,
@@ -252,13 +254,11 @@
         94,
         69,
         61,
-        0,
-        0,
-        0
+        61
       ],
       "Consumo Mensa": [
         1,
-        2,
+        1,
         1,
         2,
         1,
@@ -277,10 +277,10 @@
         2,
         1,
         2,
+        1,
         2,
-        0,
-        0,
-        0
+        2,
+        2
       ],
       "Ricarica Auto Elettriche": [
         0,
@@ -297,9 +297,9 @@
         0,
         0,
         0,
+        0,
+        0,
         1,
-        0,
-        0,
         0,
         0,
         0,
@@ -309,6 +309,8 @@
         0
       ],
       "Consumo Edificio": [
+        36,
+        36,
         36,
         21,
         48,
@@ -330,10 +332,24 @@
         40,
         40,
         39,
-        0,
-        0,
-        0
+        39
       ]
+    }
+  },
+  "_historical_correction": {
+    "version": 1,
+    "hour_shift": 2,
+    "time_zone": "Europe/Rome",
+    "estimated_hours": [
+      "00",
+      "01",
+      "23"
+    ],
+    "start_fill": "Original hour 00 copied to new hours 00 and 01",
+    "end_fill": "New hour 22 copied to hour 23",
+    "original_totale_vs_fv": {
+      "consumo": 2682,
+      "fotovoltaico": 484
     }
   }
 }
