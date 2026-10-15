@@ -1,27 +1,23 @@
 {
-  "updated_at": "2026-10-14 04:56",
+  "updated_at": "2026-10-15 03:01",
   "period": "7d",
-  "source_latest_ts": "2026-10-13 21:00",
+  "source_latest_ts": "2026-10-14 21:00",
   "totale_vs_fv": {
-    "consumo": 12780,
-    "fotovoltaico": 1978
+    "consumo": 12585,
+    "fotovoltaico": 2157
   },
   "consumo_totale": [
     {
-      "label": "Mer",
-      "value": 2211
-    },
-    {
       "label": "Gio",
-      "value": 2127
+      "value": 2121
     },
     {
       "label": "Ven",
-      "value": 1962
+      "value": 1977
     },
     {
       "label": "Sab",
-      "value": 1362
+      "value": 1359
     },
     {
       "label": "Dom",
@@ -29,18 +25,18 @@
     },
     {
       "label": "Lun",
-      "value": 2061
+      "value": 2064
     },
     {
       "label": "Mar",
-      "value": 1722
+      "value": 1944
+    },
+    {
+      "label": "Mer",
+      "value": 1785
     }
   ],
   "fotovoltaico_totale": [
-    {
-      "label": "Mer",
-      "value": 217
-    },
     {
       "label": "Gio",
       "value": 260
@@ -64,54 +60,58 @@
     {
       "label": "Mar",
       "value": 437
+    },
+    {
+      "label": "Mer",
+      "value": 396
     }
   ],
   "consumo_parziale": {
     "labels": [
-      "Mer",
       "Gio",
       "Ven",
       "Sab",
       "Dom",
       "Lun",
-      "Mar"
+      "Mar",
+      "Mer"
     ],
     "series": {
       "Consumo Gruppi Frigo": [
-        857,
-        784,
-        694,
+        783,
+        695,
         559,
         558,
         674,
-        552
+        643,
+        568
       ],
       "Consumo Mensa": [
-        268,
         265,
-        206,
-        74,
-        72,
+        207,
+        73,
+        73,
         249,
-        244
+        256,
+        234
       ],
       "Ricarica Auto Elettriche": [
-        27,
         37,
         46,
         1,
         2,
         94,
-        21
+        21,
+        65
       ],
       "Consumo Edificio": [
-        1059,
-        1041,
-        1016,
-        728,
-        703,
-        1044,
-        905
+        1036,
+        1029,
+        726,
+        702,
+        1047,
+        1024,
+        918
       ]
     }
   }
