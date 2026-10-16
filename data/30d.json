@@ -1,156 +1,156 @@
 {
-  "updated_at": "2026-10-15 03:01",
+  "updated_at": "2026-10-16 03:01",
   "period": "30d",
-  "source_latest_ts": "2026-10-14 21:00",
+  "source_latest_ts": "2026-10-15 21:00",
   "totale_vs_fv": {
-    "consumo": 55932,
-    "fotovoltaico": 12161
+    "consumo": 55569,
+    "fotovoltaico": 12015
   },
   "consumo_totale": [
     {
-      "label": "15-17 set",
-      "value": 7098
+      "label": "16-18 set",
+      "value": 6567
     },
     {
-      "label": "18-20 set",
-      "value": 3432
+      "label": "19-21 set",
+      "value": 4131
     },
     {
-      "label": "21-23 set",
-      "value": 6591
+      "label": "22-24 set",
+      "value": 6177
     },
     {
-      "label": "24-26 set",
-      "value": 4911
+      "label": "25-27 set",
+      "value": 3693
     },
     {
-      "label": "27-29 set",
-      "value": 4923
+      "label": "28-30 set",
+      "value": 6522
     },
     {
-      "label": "30 set-2 ott",
-      "value": 6906
+      "label": "1-3 ott",
+      "value": 5913
     },
     {
-      "label": "3-5 ott",
-      "value": 5058
+      "label": "4-6 ott",
+      "value": 5874
     },
     {
-      "label": "6-8 ott",
-      "value": 6549
+      "label": "7-9 ott",
+      "value": 6306
     },
     {
-      "label": "9-11 ott",
-      "value": 4671
+      "label": "10-12 ott",
+      "value": 4758
     },
     {
-      "label": "12-14 ott",
-      "value": 5793
+      "label": "13-15 ott",
+      "value": 5628
     }
   ],
   "fotovoltaico_totale": [
     {
-      "label": "15-17 set",
-      "value": 1535
+      "label": "16-18 set",
+      "value": 1356
     },
     {
-      "label": "18-20 set",
-      "value": 1385
+      "label": "19-21 set",
+      "value": 1464
     },
     {
-      "label": "21-23 set",
-      "value": 1386
+      "label": "22-24 set",
+      "value": 1362
     },
     {
-      "label": "24-26 set",
-      "value": 1397
+      "label": "25-27 set",
+      "value": 1464
     },
     {
-      "label": "27-29 set",
-      "value": 1426
+      "label": "28-30 set",
+      "value": 1383
     },
     {
-      "label": "30 set-2 ott",
-      "value": 1262
+      "label": "1-3 ott",
+      "value": 1240
     },
     {
-      "label": "3-5 ott",
-      "value": 1179
+      "label": "4-6 ott",
+      "value": 982
     },
     {
-      "label": "6-8 ott",
-      "value": 694
+      "label": "7-9 ott",
+      "value": 603
     },
     {
-      "label": "9-11 ott",
-      "value": 684
+      "label": "10-12 ott",
+      "value": 938
     },
     {
-      "label": "12-14 ott",
-      "value": 1213
+      "label": "13-15 ott",
+      "value": 1223
     }
   ],
   "consumo_parziale": {
     "labels": [
-      "15-17 set",
-      "18-20 set",
-      "21-23 set",
-      "24-26 set",
-      "27-29 set",
-      "30 set-2 ott",
-      "3-5 ott",
-      "6-8 ott",
-      "9-11 ott",
-      "12-14 ott"
+      "16-18 set",
+      "19-21 set",
+      "22-24 set",
+      "25-27 set",
+      "28-30 set",
+      "1-3 ott",
+      "4-6 ott",
+      "7-9 ott",
+      "10-12 ott",
+      "13-15 ott"
     ],
     "series": {
       "Consumo Gruppi Frigo": [
-        3043,
-        533,
-        2618,
-        1477,
-        1634,
-        2832,
-        2076,
-        2438,
-        1812,
-        1885
+        2507,
+        1057,
+        2311,
+        829,
+        2578,
+        2456,
+        2271,
+        2335,
+        1791,
+        1863
       ],
       "Consumo Mensa": [
-        637,
-        303,
-        637,
-        491,
-        520,
-        687,
-        338,
-        781,
-        353,
-        739
+        666,
+        311,
+        636,
+        324,
+        697,
+        497,
+        544,
+        739,
+        395,
+        720
       ],
       "Ricarica Auto Elettriche": [
+        160,
         128,
-        40,
-        152,
-        150,
-        63,
-        174,
-        60,
-        162,
-        49,
-        180
+        81,
+        96,
+        142,
+        95,
+        157,
+        110,
+        97,
+        116
       ],
       "Consumo Edificio": [
-        3290,
-        2556,
-        3184,
-        2793,
-        2706,
-        3213,
-        2584,
-        3168,
-        2457,
-        2989
+        3234,
+        2635,
+        3149,
+        2444,
+        3105,
+        2865,
+        2902,
+        3122,
+        2475,
+        2929
       ]
     }
   }
