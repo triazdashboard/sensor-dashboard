@@ -1,156 +1,156 @@
 {
-  "updated_at": "2026-11-23 05:00",
+  "updated_at": "2026-11-24 05:00",
   "period": "30d",
-  "source_latest_ts": "2026-11-22 23:00",
+  "source_latest_ts": "2026-11-23 23:00",
   "totale_vs_fv": {
-    "consumo": 44244,
-    "fotovoltaico": 5486
+    "consumo": 45171,
+    "fotovoltaico": 5462
   },
   "consumo_totale": [
     {
-      "label": "24-26 ott",
-      "value": 3729
+      "label": "25-27 ott",
+      "value": 4350
     },
     {
-      "label": "27-29 ott",
-      "value": 4698
+      "label": "28-30 ott",
+      "value": 4542
     },
     {
-      "label": "30 ott-1 nov",
-      "value": 3531
+      "label": "31 ott-2 nov",
+      "value": 3279
     },
     {
-      "label": "2-4 nov",
-      "value": 5085
+      "label": "3-5 nov",
+      "value": 5778
     },
     {
-      "label": "5-7 nov",
-      "value": 4926
+      "label": "6-8 nov",
+      "value": 4227
     },
     {
-      "label": "8-10 nov",
-      "value": 5118
+      "label": "9-11 nov",
+      "value": 5601
     },
     {
-      "label": "11-13 nov",
-      "value": 4917
+      "label": "12-14 nov",
+      "value": 4230
     },
     {
-      "label": "14-16 nov",
-      "value": 3807
+      "label": "15-17 nov",
+      "value": 4398
     },
     {
-      "label": "17-19 nov",
-      "value": 4755
+      "label": "18-20 nov",
+      "value": 4842
     },
     {
-      "label": "20-22 nov",
-      "value": 3678
+      "label": "21-23 nov",
+      "value": 3924
     }
   ],
   "fotovoltaico_totale": [
     {
-      "label": "24-26 ott",
-      "value": 809
+      "label": "25-27 ott",
+      "value": 934
     },
     {
-      "label": "27-29 ott",
-      "value": 920
+      "label": "28-30 ott",
+      "value": 822
     },
     {
-      "label": "30 ott-1 nov",
-      "value": 713
+      "label": "31 ott-2 nov",
+      "value": 589
     },
     {
-      "label": "2-4 nov",
-      "value": 583
+      "label": "3-5 nov",
+      "value": 708
     },
     {
-      "label": "5-7 nov",
-      "value": 506
+      "label": "6-8 nov",
+      "value": 505
     },
     {
-      "label": "8-10 nov",
-      "value": 427
+      "label": "9-11 nov",
+      "value": 382
     },
     {
-      "label": "11-13 nov",
-      "value": 418
+      "label": "12-14 nov",
+      "value": 416
     },
     {
-      "label": "14-16 nov",
-      "value": 429
+      "label": "15-17 nov",
+      "value": 377
     },
     {
-      "label": "17-19 nov",
-      "value": 251
+      "label": "18-20 nov",
+      "value": 281
     },
     {
-      "label": "20-22 nov",
-      "value": 430
+      "label": "21-23 nov",
+      "value": 448
     }
   ],
   "consumo_parziale": {
     "labels": [
-      "24-26 ott",
-      "27-29 ott",
-      "30 ott-1 nov",
-      "2-4 nov",
-      "5-7 nov",
-      "8-10 nov",
-      "11-13 nov",
-      "14-16 nov",
-      "17-19 nov",
-      "20-22 nov"
+      "25-27 ott",
+      "28-30 ott",
+      "31 ott-2 nov",
+      "3-5 nov",
+      "6-8 nov",
+      "9-11 nov",
+      "12-14 nov",
+      "15-17 nov",
+      "18-20 nov",
+      "21-23 nov"
     ],
     "series": {
       "Consumo Gruppi Frigo": [
-        1013,
-        905,
-        962,
-        1581,
-        1600,
-        1832,
-        1101,
-        1143,
-        1040,
-        1184
+        1038,
+        908,
+        1018,
+        1850,
+        1471,
+        1745,
+        987,
+        1220,
+        1114,
+        1446
       ],
       "Consumo Mensa": [
-        392,
-        721,
-        342,
-        626,
-        583,
-        572,
-        735,
-        396,
-        750,
-        350
+        563,
+        684,
+        222,
+        804,
+        385,
+        758,
+        557,
+        570,
+        724,
+        375
       ],
       "Ricarica Auto Elettriche": [
-        90,
-        173,
-        58,
-        150,
-        163,
-        124,
-        185,
-        85,
-        170,
-        99
+        177,
+        140,
+        4,
+        188,
+        126,
+        168,
+        140,
+        117,
+        233,
+        68
       ],
       "Consumo Edificio": [
-        2234,
-        2899,
-        2169,
-        2728,
-        2580,
-        2590,
-        2896,
-        2183,
-        2795,
-        2045
+        2572,
+        2810,
+        2035,
+        2936,
+        2245,
+        2930,
+        2546,
+        2491,
+        2771,
+        2035
       ]
     }
   }
